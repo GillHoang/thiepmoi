@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư Mời Tâm Đức</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --bg: #0f0518;
+        --grad: linear-gradient(135deg, #ff6a88, #602580);
+        --gold: #c5a028;
+        --white: #fff;
+        --text: #1a0b2e;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Cormorant Garamond", serif;
+        background: var(--bg);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .wrap {
+        position: absolute;
+        z-index: 10;
+        width: 90vw;
+        max-width: 500px;
+      }
+      .card {
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+        text-align: center;
+        padding: 12px;
+      }
+      .border-inner {
+        border: 1px solid var(--gold);
+        padding: 25px 15px;
+        border-radius: 4px;
+        height: 100%;
+      }
+      .logo {
+        width: 130px;
+        margin-bottom: 12px;
+      }
+      .brand {
+        font-size: 42px;
+        background: var(--grad);
+        -webkit-background-clip: text;
+        color: transparent;
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 1;
+      }
+      .sub {
+        font-size: 14px;
+        color: #602580;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+      h2 {
+        font-size: 36px;
+        color: #111;
+        margin: 10px 0;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .lead {
+        font-size: 20px;
+        color: #555;
+        margin-bottom: 20px;
+        font-style: italic;
+        line-height: 1.4;
+      }
+      .divi {
+        font-size: 16px;
+        color: var(--gold);
+        margin-bottom: 20px;
+        letter-spacing: 5px;
+      }
+      .box {
+        background: #fdfdfd;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 20px 10px;
+        margin-bottom: 25px;
+        text-align: left;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .row:last-child {
+        margin-bottom: 0;
+      }
+      .icon {
+        min-width: 40px;
+        height: 40px;
+        color: #602580;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        margin-right: 12px;
+        border: 1px solid rgba(96, 37, 128, 0.2);
+        border-radius: 50%;
+        background: #f4eff6;
+      }
+      .txt {
+        font-family: "Perpetua", "Baskerville", serif;
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text);
+        line-height: 1.1;
+      }
+      .lbl {
+        font-size: 13px;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 2px;
+      }
+      .btn {
+        padding: 14px 0;
+        width: 100%;
+        background: var(--grad);
+        color: #fff;
+        border-radius: 2px;
+        border: none;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(96, 37, 128, 0.3);
+        font-family: "Cormorant Garamond", serif;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: 0.3s;
+      }
+      .sig {
+        margin-top: 30px;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--gold);
+        font-style: italic;
+        letter-spacing: 1px;
+      }
+      .hid {
+        display: none;
+      }
+      .vis {
+        display: block;
+      }
+      #swarm {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        pointer-events: none;
+        z-index: 99;
+        display: none;
+      }
+      #back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #0f0518;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+      .plane {
+        position: absolute;
+        color: #fff;
+        bottom: -200px;
+        transform: rotate(-90deg);
+        background: -webkit-linear-gradient(#ff6a88, #602580);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+      }
+      @keyframes fly {
+        to {
+          bottom: 120vh;
+          opacity: 1;
+        }
+      }
+      @media (max-height: 700px) {
+        .lead {
+          font-size: 18px;
+        }
+        .brand {
+          font-size: 36px;
+        }
+        h2 {
+          font-size: 30px;
+        }
+        .txt {
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="swarm"><div id="back"></div></div>
+    <div class="wrap vis" id="c1">
+      <div class="card">
+        <div class="border-inner">
+          <img src="logo.jpg" class="logo" />
+          <div class="brand">Tâm Đức</div>
+          <div class="sub">Trung Tâm Giáo Dục</div>
+          <div class="divi">♦ ❖ ♦</div>
+          <h2>Thư Mời</h2>
+          <p class="lead">
+            Trân trọng kính mời Quý Đối Tác đến tham dự<br />buổi tiệc thân mật
+            và ký kết.
+          </p>
+          <div class="box">
+            <div class="row">
+              <div class="icon"><i class="far fa-clock"></i></div>
+              <div>
+                <span class="lbl">Thời gian</span
+                ><span class="txt">09:00 - 15/12/2025</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <span class="lbl">Địa điểm</span
+                ><span class="txt">Khu Biệt Thự</span>
+              </div>
+            </div>
+          </div>
+          <button class="btn" id="b">Xác Nhận Tham Gia</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap hid" id="c2">
+      <div class="card">
+        <div
+          class="border-inner"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 450px;
+          "
+        >
+          <i
+            class="fas fa-check-circle"
+            style="
+              font-size: 80px;
+              background: var(--grad);
+              -webkit-background-clip: text;
+              color: transparent;
+              margin-bottom: 20px;
+            "
+          ></i>
+          <h2 style="color: #602580">Xác Nhận<br />Thành Công</h2>
+          <div class="divi" style="margin: 20px 0">♦</div>
+          <p class="lead" style="margin-bottom: 0">
+            Hân hạnh được đón tiếp<br />Quý Đối Tác.
+          </p>
+          <div class="sig">Trân trọng, Tâm Đức Team</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const EVENT_NAMESPACE = "tamduc_event_2025";
+      const EVENT_KEY = "xac_nhan";
+
+      const b = document.getElementById("b"),
+        s = document.getElementById("swarm"),
+        bg = document.getElementById("back"),
+        c1 = document.getElementById("c1"),
+        c2 = document.getElementById("c2");
+      function r(m, x) {
+        return Math.random() * (x - m) + m;
+      }
+
+      b.onclick = () => {
+        // Gửi tín hiệu đếm lên server (Miễn phí, không cần cài đặt)
+        fetch(
+          `https://api.counterapi.dev/v1/${EVENT_NAMESPACE}/${EVENT_KEY}/up`
+        )
+          .then((res) => res.json())
+          .then((data) => console.log("Count:", data.count))
+          .catch((err) => console.log("Error:", err));
+
+        // Chạy hiệu ứng máy bay
+        s.style.display = "block";
+        setTimeout(() => {
+          bg.style.opacity = "1";
+        }, 300);
+        for (let i = 0; i < 60; i++) {
+          let p = document.createElement("i");
+          p.className = "fas fa-plane plane";
+          p.style.left = r(-5, 105) + "vw";
+          p.style.fontSize = r(30, 120) + "px";
+          p.style.animation = `fly ${r(2, 3)}s ease-in forwards`;
+          p.style.animationDelay = r(0, 0.6) + "s";
+          s.appendChild(p);
+        }
+        setTimeout(() => {
+          c1.classList.replace("vis", "hid");
+          c2.classList.replace("hid", "vis");
+        }, 1200);
+        setTimeout(() => {
+          bg.style.opacity = "0";
+        }, 2000);
+        setTimeout(() => {
+          s.style.display = "none";
+          s.innerHTML = '<div id="back"></div>';
+        }, 3500);
+      };
+    </script>
+  </body>
+</html>
