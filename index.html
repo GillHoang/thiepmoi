@@ -467,7 +467,7 @@
       /* --- MOBILE OPTIMIZATION (QUAN TRỌNG) --- */
 
       /* Khi màn hình nhỏ hơn 600px (Điện thoại) */
-      @media (max-width: 900px) {
+      @media (max-width: 600px) {
         #envelope-wrap {
           /* Thu nhỏ toàn bộ phong thư xuống 60% */
           transform: scale(0.6);
@@ -477,10 +477,12 @@
 
         .pocket-left {
           transform: scale(0.6);
+          border-right: 339px solid transparent;
         }
 
         .pocket-right {
           transform: scale(0.6);
+          border-left: 339px solid transparent;
         }
 
         /* Điều chỉnh hiệu ứng bay khi mở trên mobile */
