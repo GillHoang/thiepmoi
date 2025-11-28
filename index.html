@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Mời Tâm Đức - Perfect Black</title>
+    <title>Thư Mời Tâm Đức - Perfect Black (Mobile Optimized)</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
       rel="stylesheet"
@@ -15,12 +15,8 @@
     <style>
       :root {
         --bg: #111;
-
-        /* MÀU PHONG THƯ (Vỏ ngoài) */
         --env-color: #1a1a1a;
         --env-shadow: rgba(0, 0, 0, 0.9);
-
-        /* CẤU HÌNH VÂN ĐÁ (Lớp lót bên trong) */
         --marble-bg: #fff;
         --marble-pattern: radial-gradient(
             circle at 50% 50%,
@@ -39,25 +35,24 @@
             rgba(0, 0, 0, 0.1) 50%,
             transparent 55%
           );
-
-        /* MÀU VÀNG KIM */
         --gold-foil: linear-gradient(135deg, #fce38a, #c5a028, #fce38a);
         --gold-text: #e6c986;
-
-        /* MÀU THIỆP */
         --grad: linear-gradient(135deg, #ff6a88, #602580);
         --white: #fff;
         --text: #1a0b2e;
       }
+
       * {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
       }
+
       body {
         font-family: "Cormorant Garamond", serif;
         background: var(--bg);
         height: 100vh;
+        width: 100vw;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -70,9 +65,8 @@
       #envelope-wrap {
         position: absolute;
         z-index: 50;
-        width: 90vw;
-        max-width: 550px;
-        height: 350px;
+        width: 550px; /* Cố định width gốc để giữ hình dáng */
+        height: 350px; /* Cố định height gốc */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,13 +79,11 @@
         position: relative;
         width: 100%;
         height: 100%;
-        /* QUAN TRỌNG: Nền gốc là màu ĐEN để các khe hở không bị lộ màu trắng */
         background-color: var(--env-color);
         border-radius: 4px;
       }
 
-      /* --- LỚP LÓT VÂN ĐÁ (LINING) --- */
-      /* Lớp này nằm dưới các túi đen, chỉ thấy khi nắp mở ra */
+      /* --- LỚP LÓT VÂN ĐÁ --- */
       .envelope-lining {
         position: absolute;
         top: 0;
@@ -101,11 +93,11 @@
         background-color: var(--marble-bg);
         background-image: var(--marble-pattern);
         background-size: 80px 80px;
-        z-index: 1; /* Nằm dưới cùng (trên nền đen gốc) */
+        z-index: 1;
         border-radius: 4px;
       }
 
-      /* --- NẮP PHONG THƯ (LID) --- */
+      /* --- NẮP PHONG THƯ --- */
       .lid {
         position: absolute;
         top: 0;
@@ -118,7 +110,6 @@
         pointer-events: none;
       }
 
-      /* MẶT NGOÀI NẮP (Màu Đen tuyệt đối) */
       .lid-front {
         position: absolute;
         top: 0;
@@ -128,11 +119,9 @@
         background-color: var(--env-color);
         clip-path: polygon(0 0, 50% 100%, 100% 0);
         z-index: 2;
-        /* Bóng đổ nhẹ bên trong để tạo khối */
         box-shadow: inset 0 5px 10px rgba(241, 240, 240, 0.5);
       }
 
-      /* MẶT TRONG NẮP (Lót Vân Đá) - Ẩn đi khi đóng */
       .lid-back {
         position: absolute;
         top: 0;
@@ -146,7 +135,7 @@
         z-index: 1;
       }
 
-      /* --- CÁC TÚI MÀU ĐEN (POCKETS) --- */
+      /* --- CÁC TÚI (POCKETS) --- */
       .pocket-left,
       .pocket-right {
         position: absolute;
@@ -156,10 +145,12 @@
         z-index: 3;
         border-bottom: 350px solid var(--env-color);
       }
+
       .pocket-left {
         left: 0;
         border-right: 539px solid transparent;
       }
+
       .pocket-right {
         right: 0;
         border-left: 539px solid transparent;
@@ -180,7 +171,7 @@
           transparent
         );
       }
-      /* Viền sáng mỏng tách lớp */
+
       .pocket-bottom::before {
         content: "";
         position: absolute;
@@ -188,7 +179,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(204, 200, 200, 0.05); /* Giảm độ sáng viền để đỡ lộ */
+        background: rgba(204, 200, 200, 0.05);
         clip-path: polygon(0 100%, 50% 54%, 100% 100%);
         z-index: -1;
       }
@@ -224,7 +215,6 @@
         filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.4));
       }
 
-      /* DÒNG CHỮ VÀNG */
       .envelope-msg {
         position: absolute;
         bottom: 35px;
@@ -258,19 +248,24 @@
       .wrap {
         position: absolute;
         z-index: 10;
-        width: 90vw;
+        width: 95vw; /* Tăng độ rộng trên mobile */
         max-width: 500px;
         transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s,
           opacity 1s ease 0.6s;
         opacity: 0;
         transform: scale(0.5) translateY(100px);
         pointer-events: none;
+        max-height: 90vh; /* Tránh bị tràn màn hình dọc */
+        display: flex;
+        flex-direction: column;
       }
+
       .wrap.show-card {
         opacity: 1;
         transform: scale(1) translateY(0);
         pointer-events: auto;
       }
+
       .card {
         background: var(--white);
         border-radius: 8px;
@@ -278,93 +273,118 @@
         overflow: hidden;
         text-align: center;
         padding: 12px;
+        /* Cho phép cuộn nhẹ nếu nội dung quá dài trên máy nhỏ */
+        overflow-y: auto;
+        max-height: 90vh;
       }
+
+      /* Ẩn thanh cuộn nhưng vẫn cuộn được */
+      .card::-webkit-scrollbar {
+        width: 0;
+      }
+
       .border-inner {
         border: 1px solid #c5a028;
-        padding: 25px 15px;
+        padding: 20px 10px; /* Giảm padding một chút */
         border-radius: 4px;
-        height: 100%;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
+
       .logo {
-        width: 130px;
-        margin-bottom: 12px;
+        width: 100px; /* Thu nhỏ logo một chút */
+        margin: 0 auto 10px auto;
+        display: block;
       }
+
       .brand {
-        font-size: 42px;
+        font-size: 38px;
         background: var(--grad);
         -webkit-background-clip: text;
         color: transparent;
         font-weight: 700;
         letter-spacing: 1px;
-        line-height: 1;
+        line-height: 1.1;
       }
+
       .sub {
-        font-size: 14px;
+        font-size: 13px;
         color: #602580;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         font-weight: 600;
       }
+
+      .divi {
+        font-size: 14px;
+        color: #c5a028;
+        margin-bottom: 15px;
+        letter-spacing: 4px;
+      }
+
       h2 {
-        font-size: 36px;
+        font-size: 32px;
         color: #111;
-        margin: 10px 0;
+        margin: 5px 0;
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 2px;
       }
+
       .lead {
-        font-size: 20px;
+        font-size: 18px;
         color: #555;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         font-style: italic;
         line-height: 1.4;
+        padding: 0 10px;
       }
-      .divi {
-        font-size: 16px;
-        color: #c5a028;
-        margin-bottom: 20px;
-        letter-spacing: 5px;
-      }
+
       .box {
         background: #fdfdfd;
         border-top: 1px solid #eee;
         border-bottom: 1px solid #eee;
-        padding: 20px 10px;
-        margin-bottom: 25px;
+        padding: 15px 5px;
+        margin-bottom: 20px;
         text-align: left;
       }
+
       .row {
         display: flex;
         align-items: center;
-        margin-bottom: 15px;
+        margin-bottom: 12px;
       }
       .row:last-child {
         margin-bottom: 0;
       }
+
       .icon {
-        min-width: 40px;
-        height: 40px;
+        min-width: 36px;
+        height: 36px;
         color: #602580;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
-        margin-right: 12px;
+        font-size: 18px;
+        margin-right: 10px;
         border: 1px solid rgba(96, 37, 128, 0.2);
         border-radius: 50%;
         background: #f4eff6;
       }
+
       .txt {
         font-family: "Perpetua", "Baskerville", serif;
-        font-size: 28px;
+        font-size: 24px; /* Giảm size chữ thời gian/địa điểm */
         font-weight: 700;
         color: var(--text);
         line-height: 1.1;
       }
+
       .lbl {
-        font-size: 13px;
+        font-size: 12px;
         color: #666;
         text-transform: uppercase;
         letter-spacing: 1px;
@@ -372,14 +392,15 @@
         display: block;
         margin-bottom: 2px;
       }
+
       .btn {
-        padding: 14px 0;
+        padding: 12px 0;
         width: 100%;
         background: var(--grad);
         color: #fff;
         border-radius: 2px;
         border: none;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 600;
         cursor: pointer;
         box-shadow: 0 8px 20px rgba(96, 37, 128, 0.3);
@@ -388,20 +409,25 @@
         letter-spacing: 2px;
         transition: 0.3s;
       }
+
       .sig {
-        margin-top: 30px;
-        font-size: 22px;
+        margin-top: 25px;
+        font-size: 20px;
         font-weight: 700;
         color: #c5a028;
         font-style: italic;
         letter-spacing: 1px;
       }
+
+      /* Utility */
       .hid {
         display: none !important;
       }
       .vis {
         display: block !important;
       }
+
+      /* Animation Background */
       #swarm {
         position: fixed;
         top: 0;
@@ -430,24 +456,65 @@
         -webkit-text-fill-color: transparent;
         filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       }
+
       @keyframes fly {
         to {
           bottom: 120vh;
           opacity: 1;
         }
       }
-      @media (max-height: 700px) {
-        .lead {
-          font-size: 18px;
+
+      /* --- MOBILE OPTIMIZATION (QUAN TRỌNG) --- */
+
+      /* Khi màn hình nhỏ hơn 600px (Điện thoại) */
+      @media (max-width: 600px) {
+        #envelope-wrap {
+          /* Thu nhỏ toàn bộ phong thư xuống 60% */
+          transform: scale(0.6);
+          /* Đảm bảo chiều rộng không bị giới hạn ảo */
+          width: 100vw;
         }
+
+        /* Điều chỉnh hiệu ứng bay khi mở trên mobile */
+        .envelope-open {
+          transform: translateY(400px) scale(0.5) !important;
+        }
+
+        /* Chỉnh lại font chữ trên thiệp cho dễ đọc */
         .brand {
-          font-size: 36px;
+          font-size: 32px;
         }
         h2 {
-          font-size: 30px;
+          font-size: 26px;
         }
         .txt {
+          font-size: 20px;
+        }
+        .lead {
+          font-size: 16px;
+        }
+
+        .card {
+          padding: 8px; /* Giảm padding viền ngoài */
+        }
+        .border-inner {
+          padding: 15px 5px; /* Tận dụng không gian bên trong */
+        }
+      }
+
+      /* Màn hình cực nhỏ (iPhone SE, Fold...) */
+      @media (max-width: 380px) {
+        #envelope-wrap {
+          transform: scale(0.55);
+        }
+        .brand {
+          font-size: 28px;
+        }
+        h2 {
           font-size: 24px;
+        }
+        .icon {
+          margin-right: 8px;
         }
       }
     </style>
@@ -477,6 +544,7 @@
       <div class="card">
         <div class="border-inner">
           <img src="logo.jpg" class="logo" />
+
           <div class="brand">Tâm Đức</div>
           <div class="sub">Trung Tâm Giáo Dục</div>
           <div class="divi">♦ ❖ ♦</div>
@@ -488,15 +556,15 @@
             <div class="row">
               <div class="icon"><i class="far fa-clock"></i></div>
               <div>
-                <span class="lbl">Thời gian</span
-                ><span class="txt">maybe =]] 09:00 - 11/01/2025</span>
+                <span class="lbl">Thời gian</span>
+                <span class="txt">maybe =]] 09:00 - 11/01/2025</span>
               </div>
             </div>
             <div class="row">
               <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
               <div>
-                <span class="lbl">Địa điểm</span
-                ><span class="txt">Khu Biệt Thự</span>
+                <span class="lbl">Địa điểm</span>
+                <span class="txt">Khu Biệt Thự</span>
               </div>
             </div>
           </div>
@@ -513,20 +581,25 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 450px;
+            min-height: 400px;
           "
         >
           <i
             class="fas fa-check-circle"
             style="
-              font-size: 80px;
+              font-size: 70px;
               background: var(--grad);
               -webkit-background-clip: text;
               color: transparent;
               margin-bottom: 20px;
+              display: block;
+              margin-left: auto;
+              margin-right: auto;
             "
           ></i>
-          <h2 style="color: #602580">Xác Nhận<br />Thành Công</h2>
+          <h2 style="color: #602580; font-size: 28px">
+            Xác Nhận<br />Thành Công
+          </h2>
           <div class="divi" style="margin: 20px 0">♦</div>
           <p class="lead" style="margin-bottom: 0">
             Hân hạnh được đón tiếp<br />Quý Đối Tác.
@@ -551,11 +624,13 @@
       const b = document.getElementById("b"),
         s = document.getElementById("swarm"),
         bg = document.getElementById("back");
+
       function r(m, x) {
         return Math.random() * (x - m) + m;
       }
 
       b.onclick = () => {
+        // Gọi API (Giữ nguyên logic của bạn)
         fetch(
           `https://api.counterapi.dev/v1/${EVENT_NAMESPACE}/${EVENT_KEY}/up`
         )
@@ -566,24 +641,30 @@
         setTimeout(() => {
           bg.style.opacity = "1";
         }, 300);
+
+        // Tạo hiệu ứng máy bay
         for (let i = 0; i < 30; i++) {
           let p = document.createElement("i");
           p.className = "fas fa-plane plane";
+          // Logic ngẫu nhiên để rải máy bay đều hơn
           p.style.left = r(-5, 105) + "vw";
-          p.style.fontSize = r(30, 120) + "px";
+          p.style.fontSize = r(30, 80) + "px"; // Giảm size max chút cho mobile đỡ rối
           p.style.animation = `fly ${r(2, 3)}s ease-in forwards`;
           p.style.animationDelay = r(0, 0.6) + "s";
           s.appendChild(p);
         }
+
         setTimeout(() => {
           c1.classList.remove("show-card");
           c1.classList.add("hid");
           c2.classList.remove("hid");
           c2.classList.add("show-card");
         }, 1200);
+
         setTimeout(() => {
           bg.style.opacity = "0";
         }, 2000);
+
         setTimeout(() => {
           s.style.display = "none";
           s.innerHTML = '<div id="back"></div>';
@@ -592,4 +673,3 @@
     </script>
   </body>
 </html>
-
