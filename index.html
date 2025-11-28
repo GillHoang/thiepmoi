@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Mời Tâm Đức</title>
+    <title>Thư Mời Tâm Đức - Perfect Black</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
       rel="stylesheet"
     />
     <link
@@ -14,9 +14,38 @@
     />
     <style>
       :root {
-        --bg: #0f0518;
+        --bg: #111;
+
+        /* MÀU PHONG THƯ (Vỏ ngoài) */
+        --env-color: #1a1a1a;
+        --env-shadow: rgba(0, 0, 0, 0.9);
+
+        /* CẤU HÌNH VÂN ĐÁ (Lớp lót bên trong) */
+        --marble-bg: #fff;
+        --marble-pattern: radial-gradient(
+            circle at 50% 50%,
+            rgba(0, 0, 0, 0.02) 0%,
+            transparent 60%
+          ),
+          linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(197, 160, 40, 0.3) 50%,
+            transparent 52%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 45%,
+            rgba(0, 0, 0, 0.1) 50%,
+            transparent 55%
+          );
+
+        /* MÀU VÀNG KIM */
+        --gold-foil: linear-gradient(135deg, #fce38a, #c5a028, #fce38a);
+        --gold-text: #e6c986;
+
+        /* MÀU THIỆP */
         --grad: linear-gradient(135deg, #ff6a88, #602580);
-        --gold: #c5a028;
         --white: #fff;
         --text: #1a0b2e;
       }
@@ -34,12 +63,213 @@
         align-items: center;
         overflow: hidden;
         position: relative;
+        perspective: 1200px;
       }
+
+      /* --- KHUNG BAO --- */
+      #envelope-wrap {
+        position: absolute;
+        z-index: 50;
+        width: 90vw;
+        max-width: 550px;
+        height: 350px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 2s ease;
+        filter: drop-shadow(0 20px 30px #000);
+      }
+
+      .envelope {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /* QUAN TRỌNG: Nền gốc là màu ĐEN để các khe hở không bị lộ màu trắng */
+        background-color: var(--env-color);
+        border-radius: 4px;
+      }
+
+      /* --- LỚP LÓT VÂN ĐÁ (LINING) --- */
+      /* Lớp này nằm dưới các túi đen, chỉ thấy khi nắp mở ra */
+      .envelope-lining {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--marble-bg);
+        background-image: var(--marble-pattern);
+        background-size: 80px 80px;
+        z-index: 1; /* Nằm dưới cùng (trên nền đen gốc) */
+        border-radius: 4px;
+      }
+
+      /* --- NẮP PHONG THƯ (LID) --- */
+      .lid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 5;
+        transform-origin: top;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        pointer-events: none;
+      }
+
+      /* MẶT NGOÀI NẮP (Màu Đen tuyệt đối) */
+      .lid-front {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 175px;
+        background-color: var(--env-color);
+        clip-path: polygon(0 0, 50% 100%, 100% 0);
+        z-index: 2;
+        /* Bóng đổ nhẹ bên trong để tạo khối */
+        box-shadow: inset 0 5px 10px rgba(241, 240, 240, 0.5);
+      }
+
+      /* MẶT TRONG NẮP (Lót Vân Đá) - Ẩn đi khi đóng */
+      .lid-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 105px;
+        background-color: var(--marble-bg);
+        background-image: var(--marble-pattern);
+        background-size: 100px 100px;
+        clip-path: polygon(0 0, 50% 80%, 80% 0);
+        z-index: 1;
+      }
+
+      /* --- CÁC TÚI MÀU ĐEN (POCKETS) --- */
+      .pocket-left,
+      .pocket-right {
+        position: absolute;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        z-index: 3;
+        border-bottom: 350px solid var(--env-color);
+      }
+      .pocket-left {
+        left: 0;
+        border-right: 539px solid transparent;
+      }
+      .pocket-right {
+        right: 0;
+        border-left: 539px solid transparent;
+      }
+
+      .pocket-bottom {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 4;
+        clip-path: polygon(0 100%, 50% 55%, 100% 100%);
+        background-color: var(--env-color);
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.3),
+          transparent
+        );
+      }
+      /* Viền sáng mỏng tách lớp */
+      .pocket-bottom::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(204, 200, 200, 0.05); /* Giảm độ sáng viền để đỡ lộ */
+        clip-path: polygon(0 100%, 50% 54%, 100% 100%);
+        z-index: -1;
+      }
+
+      /* --- CON DẤU VÀNG --- */
+      .wax-seal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -30%);
+        width: 70px;
+        height: 70px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          #fff0b4,
+          #e6c986,
+          #9c7c28
+        );
+        border-radius: 50%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 6;
+        cursor: pointer;
+        border: 2px solid #fff5d1;
+        transition: opacity 0.5s ease;
+      }
+      .wax-seal i {
+        font-size: 32px;
+        color: #4a3b05;
+        transform: rotate(-90deg);
+        filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.4));
+      }
+
+      /* DÒNG CHỮ VÀNG */
+      .envelope-msg {
+        position: absolute;
+        bottom: 35px;
+        width: 100%;
+        text-align: center;
+        font-family: "Great Vibes", cursive;
+        font-size: 30px;
+        color: var(--gold-text);
+        z-index: 6;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+      }
+
+      /* --- HIỆU ỨNG MỞ --- */
+      .envelope-open .lid {
+        transform: rotateX(180deg);
+        z-index: 1;
+        transition-delay: 0s;
+      }
+      .envelope-open .wax-seal {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .envelope-open {
+        transform: translateY(350px) scale(0.8);
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* --- PHẦN THIỆP MỜI --- */
       .wrap {
         position: absolute;
         z-index: 10;
         width: 90vw;
         max-width: 500px;
+        transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s,
+          opacity 1s ease 0.6s;
+        opacity: 0;
+        transform: scale(0.5) translateY(100px);
+        pointer-events: none;
+      }
+      .wrap.show-card {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        pointer-events: auto;
       }
       .card {
         background: var(--white);
@@ -50,7 +280,7 @@
         padding: 12px;
       }
       .border-inner {
-        border: 1px solid var(--gold);
+        border: 1px solid #c5a028;
         padding: 25px 15px;
         border-radius: 4px;
         height: 100%;
@@ -93,7 +323,7 @@
       }
       .divi {
         font-size: 16px;
-        color: var(--gold);
+        color: #c5a028;
         margin-bottom: 20px;
         letter-spacing: 5px;
       }
@@ -162,15 +392,15 @@
         margin-top: 30px;
         font-size: 22px;
         font-weight: 700;
-        color: var(--gold);
+        color: #c5a028;
         font-style: italic;
         letter-spacing: 1px;
       }
       .hid {
-        display: none;
+        display: none !important;
       }
       .vis {
-        display: block;
+        display: block !important;
       }
       #swarm {
         position: fixed;
@@ -224,7 +454,26 @@
   </head>
   <body>
     <div id="swarm"><div id="back"></div></div>
-    <div class="wrap vis" id="c1">
+
+    <div id="envelope-wrap">
+      <div class="envelope">
+        <div class="envelope-lining"></div>
+
+        <div class="lid">
+          <div class="lid-back"></div>
+          <div class="lid-front"></div>
+        </div>
+
+        <div class="pocket-left"></div>
+        <div class="pocket-right"></div>
+        <div class="pocket-bottom"></div>
+
+        <div class="wax-seal"><i class="fas fa-plane"></i></div>
+        <div class="envelope-msg">Kính gửi Quý Đối Tác</div>
+      </div>
+    </div>
+
+    <div class="wrap" id="c1">
       <div class="card">
         <div class="border-inner">
           <img src="logo.jpg" class="logo" />
@@ -255,6 +504,7 @@
         </div>
       </div>
     </div>
+
     <div class="wrap hid" id="c2">
       <div class="card">
         <div
@@ -285,29 +535,33 @@
         </div>
       </div>
     </div>
+
     <script>
+      const envelopeWrap = document.getElementById("envelope-wrap");
+      const c1 = document.getElementById("c1");
+      const c2 = document.getElementById("c2");
+
+      envelopeWrap.addEventListener("click", () => {
+        envelopeWrap.classList.add("envelope-open");
+        c1.classList.add("show-card");
+      });
+
       const EVENT_NAMESPACE = "tamduc_event_2025";
       const EVENT_KEY = "xac_nhan";
-
       const b = document.getElementById("b"),
         s = document.getElementById("swarm"),
-        bg = document.getElementById("back"),
-        c1 = document.getElementById("c1"),
-        c2 = document.getElementById("c2");
+        bg = document.getElementById("back");
       function r(m, x) {
         return Math.random() * (x - m) + m;
       }
 
       b.onclick = () => {
-        // Gửi tín hiệu đếm lên server (Miễn phí, không cần cài đặt)
         fetch(
           `https://api.counterapi.dev/v1/${EVENT_NAMESPACE}/${EVENT_KEY}/up`
         )
           .then((res) => res.json())
-          .then((data) => console.log("Count:", data.count))
-          .catch((err) => console.log("Error:", err));
+          .catch((err) => console.log(err));
 
-        // Chạy hiệu ứng máy bay
         s.style.display = "block";
         setTimeout(() => {
           bg.style.opacity = "1";
@@ -322,8 +576,10 @@
           s.appendChild(p);
         }
         setTimeout(() => {
-          c1.classList.replace("vis", "hid");
-          c2.classList.replace("hid", "vis");
+          c1.classList.remove("show-card");
+          c1.classList.add("hid");
+          c2.classList.remove("hid");
+          c2.classList.add("show-card");
         }, 1200);
         setTimeout(() => {
           bg.style.opacity = "0";
