@@ -1,684 +1,796 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thư Mời Tâm Đức - Perfect Black (Mobile Fixed)</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <style>
-      :root {
-        --bg: #111;
-        /* Chỉnh màu phong thư sáng hơn tí xíu để tách khỏi nền đen */
-        --env-color: #222;
-        --env-shadow: rgba(0, 0, 0, 0.9);
-        --marble-bg: #fff;
-        --marble-pattern: radial-gradient(
-            circle at 50% 50%,
-            rgba(0, 0, 0, 0.02) 0%,
-            transparent 60%
-          ),
-          linear-gradient(
-            45deg,
-            transparent 48%,
-            rgba(197, 160, 40, 0.3) 50%,
-            transparent 52%
-          ),
-          linear-gradient(
-            -45deg,
-            transparent 45%,
-            rgba(0, 0, 0, 0.1) 50%,
-            transparent 55%
-          );
-        --gold-foil: linear-gradient(135deg, #fce38a, #c5a028, #fce38a);
-        --gold-text: #e6c986;
-        --grad: linear-gradient(135deg, #ff6a88, #602580);
-        --white: #fff;
-        --text: #1a0b2e;
-      }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thư Mời Tâm Đức - iWedding Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300;400;700&family=Dancing+Script:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    :root {
+      --bg: #111;
+      --env-color: #222;
+      --marble-bg: #fff;
+      --marble-pattern: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.02) 0%, transparent 60%), linear-gradient(45deg, transparent 48%, rgba(197, 160, 40, 0.3) 50%, transparent 52%), linear-gradient(-45deg, transparent 45%, rgba(0, 0, 0, 0.1) 50%, transparent 55%);
+      --gold-text: #e6c986;
+      --grad: linear-gradient(135deg, #ff6a88, #602580);
+      --white: #fff;
+      --text: #1a0b2e;
+      --font-main: 'Bellota Text', sans-serif;
+      --font-script: 'Dancing Script', cursive;
+    }
 
-      body {
-        font-family: "Cormorant Garamond", serif;
-        background: var(--bg);
-        height: 100vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        position: relative;
-        perspective: 1200px;
-      }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-      /* --- KHUNG BAO --- */
-      #envelope-wrap {
-        position: absolute;
-        z-index: 50;
-        width: 550px; /* Cố định width gốc */
-        height: 350px; /* Cố định height gốc */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 2s ease;
-        /* Thêm drop-shadow sáng nhẹ để tách nền */
-        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05))
-          drop-shadow(0 20px 30px #000);
-      }
+    body {
+      font-family: var(--font-main);
+      background: var(--bg);
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+      perspective: 1200px;
+      font-weight: 400;
+    }
 
-      .envelope {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background-color: var(--env-color);
-        border-radius: 4px;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05); /* Viền mỏng tang */
-      }
+    /* --- CANVAS & MUSIC --- */
+    #canvas-petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 90;
+      pointer-events: none;
+    }
 
-      /* --- LỚP LÓT VÂN ĐÁ --- */
-      .envelope-lining {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: var(--marble-bg);
-        background-image: var(--marble-pattern);
-        background-size: 80px 80px;
-        z-index: 1;
-        border-radius: 4px;
-      }
+    .music-box {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: 0.3s;
+      opacity: 0;
+      animation: fadeInMusic 2s ease forwards 1s;
+    }
 
-      /* --- NẮP PHONG THƯ --- */
-      .lid {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 5;
-        transform-origin: top;
-        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-        pointer-events: none;
-      }
-
-      .lid-front {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 175px;
-        background-color: var(--env-color);
-        clip-path: polygon(0 0, 50% 100%, 100% 0);
-        z-index: 2;
-        box-shadow: inset 0 5px 10px rgba(241, 240, 240, 0.5);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-      }
-
-      .lid-back {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 105px;
-        background-color: var(--marble-bg);
-        background-image: var(--marble-pattern);
-        background-size: 100px 100px;
-        clip-path: polygon(0 0, 50% 80%, 80% 0);
-        z-index: 1;
-      }
-
-      /* --- CÁC TÚI (POCKETS) - ĐÃ SỬA CLIP-PATH --- */
-      .pocket-left,
-      .pocket-right {
-        position: absolute;
-        top: 0; /* Quan trọng: Phủ từ trên xuống */
-        width: 100%;
-        height: 100%;
-        background-color: var(--env-color);
-        z-index: 3;
-        border: none; /* Xóa bỏ border */
-      }
-
-      .pocket-left {
-        left: 0;
-        /* Cắt hình tam giác trái */
-        clip-path: polygon(0 0, 0% 100%, 100% 100%);
-      }
-
-      /* Tạo viền sáng nhẹ cho cạnh chéo để tạo khối 3D */
-      .pocket-left::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.05),
-          transparent 50%
-        );
-        pointer-events: none;
-      }
-
-      .pocket-right {
-        right: 0;
-        /* Cắt hình tam giác phải */
-        clip-path: polygon(100% 0, 100% 100%, 0% 100%);
-      }
-
-      .pocket-bottom {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 4;
-        /* Cắt hình tam giác đáy */
-        clip-path: polygon(0 100%, 50% 55%, 100% 100%);
-        background-color: var(--env-color);
-        background-image: linear-gradient(
-          to top,
-          rgba(0, 0, 0, 0.3),
-          transparent
-        );
-      }
-
-      .pocket-bottom::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.08); /* Viền sáng cạnh đáy */
-        clip-path: polygon(0 100%, 50% 54%, 100% 100%);
-        z-index: -1;
-      }
-
-      /* --- CON DẤU VÀNG --- */
-      .wax-seal {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -30%);
-        width: 70px;
-        height: 70px;
-        background: radial-gradient(
-          circle at 30% 30%,
-          #fff0b4,
-          #e6c986,
-          #9c7c28
-        );
-        border-radius: 50%;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 6;
-        cursor: pointer;
-        border: 2px solid #fff5d1;
-        transition: opacity 0.5s ease;
-      }
-      .wax-seal i {
-        font-size: 32px;
-        color: #4a3b05;
-        transform: rotate(-90deg);
-        filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.4));
-      }
-
-      .envelope-msg {
-        position: absolute;
-        bottom: 35px;
-        width: 100%;
-        text-align: center;
-        font-family: "Great Vibes", cursive;
-        font-size: 30px;
-        color: var(--gold-text);
-        z-index: 6;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-      }
-
-      /* --- HIỆU ỨNG MỞ --- */
-      .envelope-open .lid {
-        transform: rotateX(180deg);
-        z-index: 1;
-        transition-delay: 0s;
-      }
-      .envelope-open .wax-seal {
-        opacity: 0;
-        pointer-events: none;
-      }
-      .envelope-open {
-        /* Khi mở, thu nhỏ thêm chút nữa để nó bay xuống đẹp hơn */
-        transform: translateY(350px) scale(0.7) !important;
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      /* --- PHẦN THIỆP MỜI --- */
-      .wrap {
-        position: absolute;
-        z-index: 10;
-        width: 90vw;
-        max-width: 500px;
-        transition: transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s,
-          opacity 1s ease 0.6s;
-        opacity: 0;
-        transform: scale(0.5) translateY(100px);
-        pointer-events: none;
-        max-height: 90vh;
-        display: flex;
-        flex-direction: column;
-      }
-
-      .wrap.show-card {
+    @keyframes fadeInMusic {
+      to {
         opacity: 1;
-        transform: scale(1) translateY(0);
-        pointer-events: auto;
+      }
+    }
+
+    .music-box i {
+      color: #e6c986;
+      font-size: 18px;
+    }
+
+    .music-box.playing {
+      animation: rotateMusic 3s linear infinite;
+      background: rgba(230, 201, 134, 0.2);
+      border-color: #e6c986;
+    }
+
+    @keyframes rotateMusic {
+      0% {
+        transform: rotate(0deg);
       }
 
-      .card {
-        background: var(--white);
-        border-radius: 8px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
-        overflow: hidden;
-        text-align: center;
-        padding: 12px;
-        overflow-y: auto;
-        max-height: 90vh;
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* --- ENVELOPE --- */
+    #envelope-wrap {
+      position: absolute;
+      z-index: 50;
+      width: 550px;
+      height: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1), opacity 2s ease;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05)) drop-shadow(0 20px 30px #000);
+    }
+
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: var(--env-color);
+      border-radius: 4px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    .envelope-lining {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--marble-bg);
+      background-image: var(--marble-pattern);
+      background-size: 80px 80px;
+      z-index: 1;
+      border-radius: 4px;
+    }
+
+    .lid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      transform-origin: top;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+      pointer-events: none;
+    }
+
+    .lid-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 175px;
+      background-color: var(--env-color);
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      z-index: 2;
+      box-shadow: inset 0 5px 10px rgba(241, 240, 240, 0.5);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .lid-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 105px;
+      background-color: var(--marble-bg);
+      background-image: var(--marble-pattern);
+      background-size: 100px 100px;
+      clip-path: polygon(0 0, 50% 80%, 80% 0);
+      z-index: 1;
+    }
+
+    .pocket-left,
+    .pocket-right {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--env-color);
+      z-index: 3;
+      border: none;
+    }
+
+    .pocket-left {
+      left: 0;
+      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    }
+
+    .pocket-left::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 50%);
+      pointer-events: none;
+    }
+
+    .pocket-right {
+      right: 0;
+      clip-path: polygon(100% 0, 100% 100%, 0% 100%);
+    }
+
+    .pocket-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 4;
+      clip-path: polygon(0 100%, 50% 55%, 100% 100%);
+      background-color: var(--env-color);
+      background-image: linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent);
+    }
+
+    .pocket-bottom::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      clip-path: polygon(0 100%, 50% 54%, 100% 100%);
+      z-index: -1;
+    }
+
+    .wax-seal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -30%);
+      width: 70px;
+      height: 70px;
+      background: radial-gradient(circle at 30% 30%, #fff0b4, #e6c986, #9c7c28);
+      border-radius: 50%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 6;
+      cursor: pointer;
+      border: 2px solid #fff5d1;
+      transition: opacity 0.5s ease;
+    }
+
+    .wax-seal i {
+      font-size: 32px;
+      color: #4a3b05;
+      transform: rotate(-90deg);
+      filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.4));
+    }
+
+    .envelope-msg {
+      position: absolute;
+      bottom: 35px;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-script);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--gold-text);
+      z-index: 6;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    .envelope-open .lid {
+      transform: rotateX(180deg);
+      z-index: 1;
+      transition-delay: 0s;
+    }
+
+    .envelope-open .wax-seal {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .envelope-open {
+      transform: translateY(350px) scale(0.7) !important;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* --- CARD --- */
+    .wrap {
+      position: absolute;
+      z-index: 10;
+      width: 90vw;
+      max-width: 500px;
+      transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1) 0.5s, opacity 0.8s ease 0.5s;
+      opacity: 0;
+      transform: scale(0.8) translateY(50px);
+      pointer-events: none;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrap.show-card {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+      pointer-events: auto;
+    }
+
+    .wrap.show-card .logo,
+    .wrap.show-card .brand,
+    .wrap.show-card h2,
+    .wrap.show-card .lead,
+    .wrap.show-card .box,
+    .wrap.show-card .inp-group,
+    .wrap.show-card .btn {
+      animation: slideUpFade 0.8s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .wrap.show-card .logo {
+      animation-delay: 0.7s;
+    }
+
+    .wrap.show-card .brand {
+      animation-delay: 0.8s;
+    }
+
+    .wrap.show-card h2 {
+      animation-delay: 0.9s;
+    }
+
+    .wrap.show-card .lead {
+      animation-delay: 1.0s;
+    }
+
+    .wrap.show-card .box {
+      animation-delay: 1.1s;
+    }
+
+    .wrap.show-card .inp-group {
+      animation-delay: 1.2s;
+    }
+
+    .wrap.show-card .btn {
+      animation-delay: 1.3s;
+    }
+
+    @keyframes slideUpFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
+      text-align: center;
+      padding: 12px;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    .card::-webkit-scrollbar {
+      width: 0;
+    }
+
+    .border-inner {
+      border: 1px solid #c5a028;
+      padding: 20px 10px;
+      border-radius: 4px;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 100px;
+      margin: 0 auto 10px auto;
+      display: block;
+    }
+
+    .brand {
+      font-family: var(--font-script);
+      font-size: 45px;
+      background: var(--grad);
+      -webkit-background-clip: text;
+      color: transparent;
+      font-weight: 700;
+      letter-spacing: 0;
+      line-height: 1.1;
+    }
+
+    .sub {
+      font-size: 13px;
+      color: #602580;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .divi {
+      font-size: 14px;
+      color: #c5a028;
+      margin-bottom: 15px;
+      letter-spacing: 4px;
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #111;
+      margin: 5px 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .lead {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+      font-style: normal;
+      line-height: 1.5;
+      padding: 0 10px;
+    }
+
+    .box {
+      background: #fdfdfd;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      padding: 15px 5px;
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .icon {
+      min-width: 36px;
+      height: 36px;
+      color: #602580;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-right: 10px;
+      border: 1px solid rgba(96, 37, 128, 0.2);
+      border-radius: 50%;
+      background: #f4eff6;
+    }
+
+    .txt {
+      font-family: var(--font-main);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .lbl {
+      font-size: 11px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    /* --- INPUT STYLE MỚI --- */
+    .inp-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .inp-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #602580;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .inp {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: var(--font-main);
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+      background: #fdfdfd;
+    }
+
+    .inp:focus {
+      border-color: #602580;
+      box-shadow: 0 0 0 2px rgba(96, 37, 128, 0.1);
+    }
+
+    .err-msg {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn {
+      padding: 12px 0;
+      width: 100%;
+      background: var(--grad);
+      color: #fff;
+      border-radius: 4px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(96, 37, 128, 0.3);
+      font-family: var(--font-main);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      animation: pulseBtn 2s infinite;
+    }
+
+    @keyframes pulseBtn {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(96, 37, 128, 0.7);
       }
 
-      .card::-webkit-scrollbar {
-        width: 0;
+      70% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 10px rgba(96, 37, 128, 0);
       }
 
-      .border-inner {
-        border: 1px solid #c5a028;
-        padding: 20px 10px;
-        border-radius: 4px;
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(96, 37, 128, 0);
       }
+    }
 
-      .logo {
-        width: 100px;
-        margin: 0 auto 10px auto;
-        display: block;
+    .sig {
+      margin-top: 25px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #c5a028;
+      font-family: var(--font-script);
+      letter-spacing: 0;
+    }
+
+    .hid {
+      display: none !important;
+    }
+
+    .vis {
+      display: block !important;
+    }
+
+    #swarm {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 99;
+      display: none;
+    }
+
+    #back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #0f0518;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .plane {
+      position: absolute;
+      color: #fff;
+      bottom: -200px;
+      transform: rotate(-90deg);
+      background: -webkit-linear-gradient(#ff6a88, #602580);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
+    }
+
+    @keyframes fly {
+      to {
+        bottom: 120vh;
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      #envelope-wrap {
+        transform: scale(0.62);
+        width: 550px;
       }
 
       .brand {
         font-size: 38px;
-        background: var(--grad);
-        -webkit-background-clip: text;
-        color: transparent;
-        font-weight: 700;
-        letter-spacing: 1px;
-        line-height: 1.1;
-      }
-
-      .sub {
-        font-size: 13px;
-        color: #602580;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        margin-bottom: 10px;
-        font-weight: 600;
-      }
-
-      .divi {
-        font-size: 14px;
-        color: #c5a028;
-        margin-bottom: 15px;
-        letter-spacing: 4px;
       }
 
       h2 {
-        font-size: 32px;
-        color: #111;
-        margin: 5px 0;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      .lead {
-        font-size: 18px;
-        color: #555;
-        margin-bottom: 15px;
-        font-style: italic;
-        line-height: 1.4;
-        padding: 0 10px;
-      }
-
-      .box {
-        background: #fdfdfd;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-        padding: 15px 5px;
-        margin-bottom: 20px;
-        text-align: left;
-      }
-
-      .row {
-        display: flex;
-        align-items: center;
-        margin-bottom: 12px;
-      }
-      .row:last-child {
-        margin-bottom: 0;
-      }
-
-      .icon {
-        min-width: 36px;
-        height: 36px;
-        color: #602580;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        margin-right: 10px;
-        border: 1px solid rgba(96, 37, 128, 0.2);
-        border-radius: 50%;
-        background: #f4eff6;
+        font-size: 22px;
       }
 
       .txt {
-        font-family: "Perpetua", "Baskerville", serif;
-        font-size: 24px;
-        font-weight: 700;
-        color: var(--text);
-        line-height: 1.1;
-      }
-
-      .lbl {
-        font-size: 12px;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 600;
-        display: block;
-        margin-bottom: 2px;
-      }
-
-      .btn {
-        padding: 12px 0;
-        width: 100%;
-        background: var(--grad);
-        color: #fff;
-        border-radius: 2px;
-        border: none;
         font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        box-shadow: 0 8px 20px rgba(96, 37, 128, 0.3);
-        font-family: "Cormorant Garamond", serif;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: 0.3s;
       }
 
-      .sig {
-        margin-top: 25px;
+      .lead {
+        font-size: 15px;
+      }
+
+      .card {
+        padding: 8px;
+      }
+
+      .border-inner {
+        padding: 15px 5px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      #envelope-wrap {
+        transform: scale(0.55);
+      }
+
+      .brand {
+        font-size: 32px;
+      }
+
+      h2 {
         font-size: 20px;
-        font-weight: 700;
-        color: #c5a028;
-        font-style: italic;
-        letter-spacing: 1px;
       }
+    }
+  </style>
+</head>
 
-      .hid {
-        display: none !important;
-      }
-      .vis {
-        display: block !important;
-      }
+<body>
+  <canvas id="canvas-petals"></canvas>
+  <audio id="bg-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+  <div class="music-box" id="music-btn"><i class="fas fa-music"></i></div>
+  <div id="swarm">
+    <div id="back"></div>
+  </div>
 
-      #swarm {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        pointer-events: none;
-        z-index: 99;
-        display: none;
-      }
-      #back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #0f0518;
-        opacity: 0;
-        transition: opacity 0.8s ease;
-      }
-      .plane {
-        position: absolute;
-        color: #fff;
-        bottom: -200px;
-        transform: rotate(-90deg);
-        background: -webkit-linear-gradient(#ff6a88, #602580);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
-      }
-
-      @keyframes fly {
-        to {
-          bottom: 120vh;
-          opacity: 1;
-        }
-      }
-
-      /* --- MOBILE FIX (Đã được làm sạch) --- */
-      @media (max-width: 600px) {
-        #envelope-wrap {
-          /* Chỉ scale khung bao, không can thiệp vào pockets bên trong nữa */
-          transform: scale(0.62);
-          width: 550px; /* Giữ nguyên width gốc để scale đúng tỷ lệ */
-        }
-
-        /* Chữ nhỏ lại trên mobile */
-        .brand {
-          font-size: 32px;
-        }
-        h2 {
-          font-size: 26px;
-        }
-        .txt {
-          font-size: 20px;
-        }
-        .lead {
-          font-size: 16px;
-        }
-        .card {
-          padding: 8px;
-        }
-        .border-inner {
-          padding: 15px 5px;
-        }
-      }
-
-      @media (max-width: 380px) {
-        #envelope-wrap {
-          transform: scale(0.55);
-        }
-        .brand {
-          font-size: 28px;
-        }
-        h2 {
-          font-size: 24px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div id="swarm"><div id="back"></div></div>
-
-    <div id="envelope-wrap">
-      <div class="envelope">
-        <div class="envelope-lining"></div>
-
-        <div class="lid">
-          <div class="lid-back"></div>
-          <div class="lid-front"></div>
-        </div>
-
-        <div class="pocket-left"></div>
-        <div class="pocket-right"></div>
-        <div class="pocket-bottom"></div>
-
-        <div class="wax-seal"><i class="fas fa-plane"></i></div>
-        <div class="envelope-msg">Kính gửi Quý Đối Tác</div>
+  <div id="envelope-wrap">
+    <div class="envelope">
+      <div class="envelope-lining"></div>
+      <div class="lid">
+        <div class="lid-back"></div>
+        <div class="lid-front"></div>
       </div>
+      <div class="pocket-left"></div>
+      <div class="pocket-right"></div>
+      <div class="pocket-bottom"></div>
+      <div class="wax-seal"><i class="fas fa-plane"></i></div>
+      <div class="envelope-msg">Kính gửi Quý Đối Tác</div>
     </div>
+  </div>
 
-    <div class="wrap" id="c1">
-      <div class="card">
-        <div class="border-inner">
-          <img src="logo.jpg" class="logo" />
-
-          <div class="brand">Tâm Đức</div>
-          <div class="sub">Trung Tâm Giáo Dục</div>
-          <div class="divi">♦ ❖ ♦</div>
-          <h2>Thư Mời</h2>
-          <p class="lead">
-            Trân trọng kính mời Quý Đối Tác đến tham dự<br />buổi tiệc thân mật.
-          </p>
-          <div class="box">
-            <div class="row">
-              <div class="icon"><i class="far fa-clock"></i></div>
-              <div>
-                <span class="lbl">Thời gian</span>
-                <span class="txt">maybe =]] 09:00 - 11/01/2025</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div>
-                <span class="lbl">Địa điểm</span>
-                <span class="txt">Khu Biệt Thự</span>
-              </div>
-            </div>
+  <div class="wrap" id="c1">
+    <div class="card">
+      <div class="border-inner">
+        <img style="width: 200px; margin: 0 auto 10px auto; display: block;" src="logo.jpg" class="logo" />
+        <div class="brand">Tâm Đức</div>
+        <div class="sub">Trung Tâm Giáo Dục</div>
+        <div class="divi">♦ ❖ ♦</div>
+        <h2>Thư Mời</h2>
+        <p class="lead">Trân trọng kính mời Quý Đối Tác đến tham dự<br />buổi tiệc thân mật.</p>
+        <div class="box">
+          <div class="row">
+            <div class="icon"><i class="far fa-clock"></i></div>
+            <div><span class="lbl">Thời gian</span><span class="txt">maybe =]] 09:00 - 11/01/2025</span></div>
           </div>
-          <button class="btn" id="b">Xác Nhận Tham Gia</button>
+          <div class="row">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div><span class="lbl">Địa điểm</span><span class="txt">Khu Biệt Thự</span></div>
+          </div>
         </div>
+
+        <div class="inp-group">
+          <span class="inp-label">Tên của bạn/anh/chị:</span>
+          <input type="text" id="guest-name" class="inp" placeholder="Nhập tên để xác nhận..." />
+          <div class="err-msg" id="err">Cho e xin tên :*]]</div>
+        </div>
+
+        <button class="btn" id="b">Xác Nhận Tham Gia</button>
       </div>
     </div>
+  </div>
 
-    <div class="wrap hid" id="c2">
-      <div class="card">
-        <div
-          class="border-inner"
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 400px;
-          "
-        >
-          <i
-            class="fas fa-check-circle"
-            style="
-              font-size: 70px;
-              background: var(--grad);
-              -webkit-background-clip: text;
-              color: transparent;
-              margin-bottom: 20px;
-              display: block;
-              margin-left: auto;
-              margin-right: auto;
-            "
-          ></i>
-          <h2 style="color: #602580; font-size: 28px">
-            Xác Nhận<br />Thành Công
-          </h2>
-          <div class="divi" style="margin: 20px 0">♦</div>
-          <p class="lead" style="margin-bottom: 0">
-            Hân hạnh được đón tiếp<br />Quý Đối Tác.
-          </p>
-          <div class="sig">Trân trọng, Tâm Đức Team</div>
-        </div>
+  <div class="wrap hid" id="c2">
+    <div class="card">
+      <div class="border-inner"
+        style="display: flex; flex-direction: column; justify-content: center; min-height: 400px;">
+        <i class="fas fa-check-circle"
+          style="font-size: 70px; background: var(--grad); -webkit-background-clip: text; color: transparent; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;"></i>
+        <h2 style="color: #602580; font-size: 24px">Xác Nhận<br />Thành Công</h2>
+        <div class="divi" style="margin: 20px 0">♦</div>
+        <p class="lead" style="margin-bottom: 0">Hân hạnh được đón tiếp<br /><span id="show-name"
+            style="font-weight:700; color:#c5a028"></span>.</p>
+        <div class="sig">Trân trọng, Tâm Đức Team</div>
       </div>
     </div>
+  </div>
 
-    <script>
-      const envelopeWrap = document.getElementById("envelope-wrap");
-      const c1 = document.getElementById("c1");
-      const c2 = document.getElementById("c2");
+  <script>
+    const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfskzQHqmZ7tC9LoUoEpEnkkNQAyvqmt4vsVip6xaYHSdLkDw/formResponse";
+    const ENTRY_ID = "entry.42927811";
+    const envelopeWrap = document.getElementById("envelope-wrap");
+    const c1 = document.getElementById("c1"), c2 = document.getElementById("c2");
+    const audio = document.getElementById("bg-music"), musicBtn = document.getElementById("music-btn");
+    let isMusicPlaying = false;
 
-      envelopeWrap.addEventListener("click", () => {
-        envelopeWrap.classList.add("envelope-open");
-        c1.classList.add("show-card");
-      });
+    envelopeWrap.addEventListener("click", () => {
+      envelopeWrap.classList.add("envelope-open"); c1.classList.add("show-card");
+      audio.volume = 0.5; audio.play().then(() => { isMusicPlaying = true; musicBtn.classList.add("playing"); }).catch(e => console.log("Click play"));
+    });
+    musicBtn.addEventListener("click", () => {
+      if (isMusicPlaying) { audio.pause(); musicBtn.classList.remove("playing"); isMusicPlaying = false; } else { audio.play(); musicBtn.classList.add("playing"); isMusicPlaying = true; }
+    });
 
-      const EVENT_NAMESPACE = "tamduc_event_2025";
-      const EVENT_KEY = "xac_nhan";
-      const b = document.getElementById("b"),
-        s = document.getElementById("swarm"),
-        bg = document.getElementById("back");
+    const b = document.getElementById("b"), s = document.getElementById("swarm"), bg = document.getElementById("back");
+    const guestName = document.getElementById("guest-name");
+    const errMsg = document.getElementById("err");
+    const showName = document.getElementById("show-name");
 
-      function r(m, x) {
-        return Math.random() * (x - m) + m;
+    function r(m, x) { return Math.random() * (x - m) + m; }
+
+    b.onclick = () => {
+      const nameVal = guestName.value.trim();
+      if (!nameVal) {
+        errMsg.style.display = "block";
+        guestName.focus();
+        return;
       }
+      errMsg.style.display = "none";
+      showName.innerText = nameVal;
+      if (FORM_ACTION_URL.includes("docs.google.com")) {
+        const formData = new FormData();
+        formData.append(ENTRY_ID, nameVal);
+        fetch(FORM_ACTION_URL, { method: "POST", body: formData, mode: "no-cors" }).catch(e => console.log(e));
+      }
+      s.style.display = "block"; setTimeout(() => { bg.style.opacity = "1"; }, 300);
+      for (let i = 0; i < 30; i++) {
+        let p = document.createElement("i"); p.className = "fas fa-plane plane";
+        p.style.left = r(-5, 105) + "vw"; p.style.fontSize = r(30, 80) + "px";
+        p.style.animation = `fly ${r(2, 3)}s ease-in forwards`; p.style.animationDelay = r(0, 0.6) + "s";
+        s.appendChild(p);
+      }
+      setTimeout(() => { c1.classList.remove("show-card"); c1.classList.add("hid"); c2.classList.remove("hid"); c2.classList.add("show-card"); }, 1200);
+      setTimeout(() => { bg.style.opacity = "0"; }, 2000);
+      setTimeout(() => { s.style.display = "none"; s.innerHTML = '<div id="back"></div>'; }, 3500);
+    };
+    const canvas = document.getElementById('canvas-petals'), ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    const petals = []; const numPetals = 40;
+    class Petal {
+      constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height - canvas.height; this.size = Math.random() * 5 + 5; this.speed = Math.random() * 1 + 0.5; this.angle = Math.random() * 360; this.spin = Math.random() * 0.05 - 0.025; this.color = `rgba(255, ${200 + Math.random() * 55}, ${200 + Math.random() * 55}, ${Math.random() * 0.5 + 0.3})`; }
+      update() { this.y += this.speed; this.x += Math.sin(this.angle) * 0.5; this.angle += this.spin; if (this.y > canvas.height) { this.y = -20; this.x = Math.random() * canvas.width; } }
+      draw() { ctx.save(); ctx.translate(this.x, this.y); ctx.rotate(this.angle); ctx.fillStyle = this.color; ctx.beginPath(); ctx.moveTo(0, 0); ctx.bezierCurveTo(this.size / 2, -this.size / 2, this.size, 0, 0, this.size); ctx.bezierCurveTo(-this.size, 0, -this.size / 2, -this.size / 2, 0, 0); ctx.fill(); ctx.restore(); }
+    }
+    function initPetals() { for (let i = 0; i < numPetals; i++) petals.push(new Petal()); }
+    function animatePetals() { ctx.clearRect(0, 0, canvas.width, canvas.height); petals.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animatePetals); }
+    initPetals(); animatePetals();
+    window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+  </script>
+</body>
 
-      b.onclick = () => {
-        // Gọi API (Giữ nguyên logic của bạn)
-        fetch(
-          `https://api.counterapi.dev/v1/${EVENT_NAMESPACE}/${EVENT_KEY}/up`
-        )
-          .then((res) => res.json())
-          .catch((err) => console.log(err));
-
-        s.style.display = "block";
-        setTimeout(() => {
-          bg.style.opacity = "1";
-        }, 300);
-
-        // Tạo hiệu ứng máy bay
-        for (let i = 0; i < 30; i++) {
-          let p = document.createElement("i");
-          p.className = "fas fa-plane plane";
-          // Logic ngẫu nhiên để rải máy bay đều hơn
-          p.style.left = r(-5, 105) + "vw";
-          p.style.fontSize = r(30, 80) + "px"; // Giảm size max chút cho mobile đỡ rối
-          p.style.animation = `fly ${r(2, 3)}s ease-in forwards`;
-          p.style.animationDelay = r(0, 0.6) + "s";
-          s.appendChild(p);
-        }
-
-        setTimeout(() => {
-          c1.classList.remove("show-card");
-          c1.classList.add("hid");
-          c2.classList.remove("hid");
-          c2.classList.add("show-card");
-        }, 1200);
-
-        setTimeout(() => {
-          bg.style.opacity = "0";
-        }, 2000);
-
-        setTimeout(() => {
-          s.style.display = "none";
-          s.innerHTML = '<div id="back"></div>';
-        }, 3500);
-      };
-    </script>
-  </body>
 </html>
