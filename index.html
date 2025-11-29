@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Thư Mời Tâm Đức - iWedding Style</title>
+  <title>Thư Mời Tâm Đức Style</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -731,7 +731,6 @@
   </div>
 
   <script>
-    // GIỮ NGUYÊN LINK GOOGLE FORM CỦA BẠN
     const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSfskzQHqmZ7tC9LoUoEpEnkkNQAyvqmt4vsVip6xaYHSdLkDw/formResponse";
     const ENTRY_ID = "entry.42927811";
 
@@ -780,11 +779,9 @@
       setTimeout(() => { bg.style.opacity = "0"; }, 2000);
       setTimeout(() => { s.style.display = "none"; s.innerHTML = '<div id="back"></div>'; }, 3500);
     };
-
-    /* --- ĐÃ ĐỔI HIỆU ỨNG TỪ HOA RƠI (Petal) SANG NGÔI SAO (Star) --- */
     const canvas = document.getElementById('canvas-petals'), ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-    const stars = []; const numStars = 50; // Đổi tên biến cho dễ hiểu
+    const stars = []; const numStars = 50;
 
     class Star {
       constructor() {
