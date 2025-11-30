@@ -64,6 +64,7 @@
         font-weight: 400;
       }
 
+      /* --- CANVAS & MUSIC --- */
       #canvas-petals {
         position: fixed;
         top: 0;
@@ -343,7 +344,7 @@
         pointer-events: auto;
       }
 
-      /* Hiệu ứng xuất hiện cho các phần tử */
+      /* Animation */
       .wrap.show-card .logo,
       .wrap.show-card .brand,
       .wrap.show-card h2,
@@ -351,6 +352,7 @@
       .wrap.show-card .box,
       .wrap.show-card .guest-box,
       .wrap.show-card .btn,
+      .wrap.show-card .map-btn-wrap,
       .wrap.show-card .timeline-box {
         animation: slideUpFade 0.8s ease forwards;
         opacity: 0;
@@ -378,7 +380,12 @@
       .wrap.show-card .btn {
         animation-delay: 1.3s;
       }
-      /* Timeline xuất hiện sau khi confirm nên ko cần delay ở đây */
+      .wrap.show-card .map-btn-wrap {
+        animation-delay: 0.3s;
+      } /* Hiện ngay sau khi confirm */
+      .wrap.show-card .timeline-box {
+        animation-delay: 0.5s;
+      }
 
       @keyframes slideUpFade {
         to {
@@ -514,7 +521,6 @@
         margin-bottom: 3px;
       }
 
-      /* --- STYLE MỚI: HIỂN THỊ TÊN KHÁCH --- */
       .guest-box {
         margin-bottom: 20px;
         padding: 10px;
@@ -558,27 +564,54 @@
           transform: scale(1);
           box-shadow: 0 0 0 0 rgba(96, 37, 128, 0.7);
         }
-
         70% {
           transform: scale(1.02);
           box-shadow: 0 0 0 10px rgba(96, 37, 128, 0);
         }
-
         100% {
           transform: scale(1);
           box-shadow: 0 0 0 0 rgba(96, 37, 128, 0);
         }
       }
 
-      /* --- TIMELINE STYLE (MỚI) --- */
+      /* --- NÚT GOOGLE MAPS (MỚI) --- */
+      .map-btn-wrap {
+        margin: 10px 0 20px 0;
+      }
+      .map-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 25px;
+        background: #fff;
+        color: #602580;
+        border: 2px solid #602580;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 15px;
+        transition: 0.3s;
+        box-shadow: 0 4px 10px rgba(96, 37, 128, 0.1);
+      }
+      .map-btn i {
+        margin-right: 8px;
+        font-size: 18px;
+      }
+      .map-btn:hover {
+        background: #602580;
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(96, 37, 128, 0.25);
+      }
+
+      /* --- TIMELINE --- */
       .timeline-box {
-        margin-top: 20px;
+        margin-top: 10px;
         text-align: left;
         border-top: 1px solid #eee;
         padding-top: 15px;
         width: 100%;
-        opacity: 0; /* Ẩn lúc đầu */
-        animation: slideUpFade 0.8s ease forwards 0.5s;
+        opacity: 0;
       }
       .tl-title {
         font-size: 18px;
@@ -641,11 +674,9 @@
       .hid {
         display: none !important;
       }
-
       .vis {
         display: block !important;
       }
-
       #swarm {
         position: fixed;
         top: 0;
@@ -656,7 +687,6 @@
         z-index: 99;
         display: none;
       }
-
       #back {
         position: absolute;
         width: 100%;
@@ -665,7 +695,6 @@
         opacity: 0;
         transition: opacity 0.8s ease;
       }
-
       .plane {
         position: absolute;
         color: #fff;
@@ -676,7 +705,6 @@
         -webkit-text-fill-color: transparent;
         filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.5));
       }
-
       @keyframes fly {
         to {
           bottom: 120vh;
@@ -689,41 +717,32 @@
           transform: scale(0.62);
           width: 550px;
         }
-
         .brand {
           font-size: 38px;
         }
-
         h2 {
           font-size: 22px;
         }
-
         .txt {
           font-size: 16px;
         }
-
         .lead {
           font-size: 15px;
         }
-
         .card {
           padding: 8px;
         }
-
         .border-inner {
           padding: 15px 5px;
         }
       }
-
       @media (max-width: 380px) {
         #envelope-wrap {
           transform: scale(0.55);
         }
-
         .brand {
           font-size: 32px;
         }
-
         h2 {
           font-size: 20px;
         }
@@ -783,7 +802,7 @@
               <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
               <div>
                 <span class="lbl">Địa điểm</span
-                ><span class="txt">Khu Biệt Thự</span>
+                ><span class="txt">Nhà Hàng Thanh Tùng</span>
               </div>
             </div>
           </div>
@@ -825,9 +844,27 @@
           <h2 style="color: #602580; font-size: 24px">
             Xác Nhận<br />Thành Công
           </h2>
+          <div class="divi" style="margin: 20px 0">♦</div>
+          <p class="lead" style="margin-bottom: 0">
+            Hân hạnh được đón tiếp<br /><span
+              id="show-name"
+              style="font-weight: 700; color: #c5a028"
+            ></span
+            >.
+          </p>
+
+          <div class="map-btn-wrap">
+            <a
+              href="https://maps.app.goo.gl/YmazrQ286mGDeusx9"
+              target="_blank"
+              class="map-btn"
+            >
+              <i class="fas fa-map-marked-alt"></i> Xem Bản Đồ
+            </a>
+          </div>
 
           <div class="timeline-box">
-            <div class="tl-title">NỘI DUNG CHƯƠNG TRÌNH</div>
+            <div class="tl-title">NỘI DUNG SỰ KIỆN</div>
             <div class="tl-item">
               <div class="tl-time">09:00</div>
               <div class="tl-content">
@@ -839,14 +876,14 @@
               <div class="tl-time">09:30</div>
               <div class="tl-content">
                 <div class="tl-h">KHAI MẠC</div>
-                <div class="tl-d">1 Tí Văn Nghệ</div>
+                <div class="tl-d">1 chút văn nghệ</div>
               </div>
             </div>
             <div class="tl-item">
               <div class="tl-time">11:30</div>
               <div class="tl-content">
                 <div class="tl-h">TIỆC TRƯA</div>
-                <div class="tl-d">Ăn hoi</div>
+                <div class="tl-d">ăn hoi</div>
               </div>
             </div>
           </div>
@@ -868,18 +905,19 @@
         musicBtn = document.getElementById("music-btn");
       let isMusicPlaying = false;
 
-      // --- 1. LẤY TÊN KHÁCH TỪ LINK (Logic Mới) ---
+      // 1. LẤY TÊN KHÁCH TỪ LINK
       const urlParams = new URLSearchParams(window.location.search);
-      const guestNameParam = urlParams.get("n"); // Lấy tham số 'n' từ URL
+      const guestNameParam = urlParams.get("n");
       const guestDisplay = document.getElementById("guest-display");
+      const showName = document.getElementById("show-name");
 
-      let finalName = "Quý Khách"; // Mặc định nếu không có tên
+      let finalName = "Quý Khách";
       if (guestNameParam) {
         finalName = guestNameParam;
         guestDisplay.innerText = finalName;
       }
 
-      // --- 2. LOGIC PHÁT NHẠC (Giữ nguyên tối ưu) ---
+      // 2. LOGIC PHÁT NHẠC
       function tryPlayMusic() {
         if (!isMusicPlaying) {
           audio.volume = 0.5;
@@ -906,7 +944,8 @@
         c1.classList.add("show-card");
         tryPlayMusic();
       });
-      musicBtn.addEventListener("click", () => {
+      musicBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
         if (isMusicPlaying) {
           audio.pause();
           musicBtn.classList.remove("playing");
@@ -927,10 +966,13 @@
       }
 
       b.onclick = () => {
-        // --- 3. GỬI TÊN LẤY TỪ LINK VỀ GOOGLE FORM ---
+        // Hiện tên ở card 2
+        showName.innerText = finalName;
+
+        // GỬI TÊN VỀ GOOGLE FORM
         if (FORM_ACTION_URL.includes("docs.google.com")) {
           const formData = new FormData();
-          formData.append(ENTRY_ID, finalName); // Gửi tên lấy từ link
+          formData.append(ENTRY_ID, finalName);
           fetch(FORM_ACTION_URL, {
             method: "POST",
             body: formData,
