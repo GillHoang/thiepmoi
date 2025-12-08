@@ -49,6 +49,27 @@
         margin: 0;
         padding: 0;
       }
+      /* Sửa thanh cuộn cho đẹp */
+      .card::-webkit-scrollbar {
+        width: 6px; /* Mỏng lại */
+      }
+
+      .card::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+
+      .card::-webkit-scrollbar-thumb {
+        background: linear-gradient(
+          #ff6a88,
+          #602580
+        ); /* Màu gradient tím hồng */
+        border-radius: 4px;
+      }
+
+      .card::-webkit-scrollbar-thumb:hover {
+        background: #602580; /* Đổi màu khi di chuột vào */
+      }
 
       body {
         font-family: var(--font-main);
@@ -394,15 +415,83 @@
         }
       }
 
+      /* Sửa class .card */
       .card {
         background: var(--white);
         border-radius: 8px;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        /* Tăng độ bóng đổ để nổi hơn trên nền tối */
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8),
+          0 0 15px rgba(255, 106, 136, 0.4);
         overflow: hidden;
         text-align: center;
-        padding: 12px;
+        /* Giảm padding để lộ viền gradient */
+        padding: 4px;
         overflow-y: auto;
         max-height: 90vh;
+
+        /* Gradient màu chạy theo logo: Hồng -> Tím -> Vàng -> Hồng */
+        background: linear-gradient(60deg, #ff6a88, #602580, #c5a028, #ff6a88);
+        background-size: 300% 300%; /* Phóng to background để nó chạy mượt */
+        animation: borderAnim 4s ease infinite; /* Chạy animation */
+      }
+
+      /* Thêm đoạn keyframes này ngay dưới .card nếu chưa có */
+      @keyframes borderAnim {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* Sửa class .border-inner */
+      .border-inner {
+        background: #fff; /* Nền trắng đè lên để tạo hiệu ứng viền */
+        border: 1px solid #e6c986; /* Viền vàng mảnh bên trong */
+        padding: 20px 10px;
+        border-radius: 4px;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+      }
+
+      /* Tạo 2 góc trên trái & dưới phải */
+      .border-inner::before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        border-top: 2px solid #c5a028;
+        border-left: 2px solid #c5a028;
+        pointer-events: none; /* Để không bị che nút bấm */
+      }
+
+      /* Tạo 2 góc trên phải & dưới trái */
+      .border-inner::after {
+        content: "";
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        border-bottom: 2px solid #c5a028;
+        border-right: 2px solid #c5a028;
+        pointer-events: none;
+      }
+
+      /* Thủ thuật tạo 4 góc bằng box-shadow để đỡ viết nhiều code HTML */
+      .border-inner {
+        /* Giữ code cũ */
+        position: relative; /* Bắt buộc để căn chỉnh góc */
+        box-shadow: inset 0 0 20px rgba(230, 201, 134, 0.1); /* Thêm ánh vàng mờ bên trong */
       }
 
       .card::-webkit-scrollbar {
@@ -420,20 +509,56 @@
       }
 
       .logo {
-        width: 100px;
-        margin: 0 auto 10px auto;
-        display: block;
+        width: 100px; /* Code cũ */
+        margin: 0 auto 10px auto; /* Code cũ */
+        display: block; /* Code cũ */
+
+        /* Code mới: Tạo bóng màu tím */
+        filter: drop-shadow(0 10px 15px rgba(96, 37, 128, 0.4));
+        /* Animation nhấp nhô */
+        animation: floatLogo 3s ease-in-out infinite;
+      }
+
+      @keyframes floatLogo {
+        0% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-8px);
+        } /* Bay lên nhẹ */
+        100% {
+          transform: translateY(0px);
+        }
       }
 
       .brand {
         font-family: var(--font-script);
         font-size: 45px;
-        background: var(--grad);
-        -webkit-background-clip: text;
-        color: transparent;
         font-weight: 700;
         letter-spacing: 0;
         line-height: 1.1;
+
+        /* Tạo gradient ánh kim */
+        background: linear-gradient(
+          to right,
+          #602580 0%,
+          #ff6a88 20%,
+          #c5a028 50%,
+          #ff6a88 80%,
+          #602580 100%
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+
+        /* Animation chữ lấp lánh */
+        animation: shineText 5s linear infinite;
+      }
+
+      @keyframes shineText {
+        to {
+          background-position: 200% center;
+        }
       }
 
       .sub {
@@ -541,7 +666,9 @@
         font-family: var(--font-script);
       }
 
+      /* --- TÌM VÀ SỬA LẠI ĐOẠN NÀY --- */
       .btn {
+        /* Các thuộc tính cũ giữ nguyên */
         padding: 12px 0;
         width: 100%;
         background: var(--grad);
@@ -557,20 +684,41 @@
         letter-spacing: 1px;
         transition: 0.3s;
         animation: pulseBtn 2s infinite;
+
+        /* --- QUAN TRỌNG: THÊM 3 DÒNG NÀY ĐỂ HIỆU ỨNG CHẠY ĐÚNG --- */
+        position: relative; /* Để giữ hiệu ứng nằm trong nút */
+        overflow: hidden; /* Để cắt bỏ phần sáng chạy ra ngoài nút */
+        z-index: 1;
       }
 
-      @keyframes pulseBtn {
+      /* --- THÊM MỚI ĐOẠN NÀY NGAY BÊN DƯỚI .btn --- */
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        /* Màu trắng mờ quét qua */
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+        animation: shineBtn 3s infinite; /* Chạy lặp lại mỗi 3 giây */
+        pointer-events: none; /* Đảm bảo vẫn click được vào nút */
+      }
+
+      @keyframes shineBtn {
         0% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(96, 37, 128, 0.7);
+          left: -100%;
         }
-        70% {
-          transform: scale(1.02);
-          box-shadow: 0 0 0 10px rgba(96, 37, 128, 0);
+        20% {
+          left: 100%; /* Chạy nhanh qua trong 20% thời gian đầu */
         }
         100% {
-          transform: scale(1);
-          box-shadow: 0 0 0 0 rgba(96, 37, 128, 0);
+          left: 100%; /* Thời gian còn lại nghỉ */
         }
       }
 
@@ -786,7 +934,7 @@
           <div class="brand">Tâm Đức</div>
           <div class="sub">HỆ THỐNG GIÁO DỤC TÂM ĐỨC</div>
           <div class="divi">♦ ❖ ♦</div>
-          <h2>Thư Mời</h2>
+          <h6 class="brand">Thư Mời</h6>
           <p class="lead">
             Trân trọng kính mời Quý Đối Tác đến tham dự<br />buổi tiệc thân mật.
           </p>
@@ -795,7 +943,7 @@
               <div class="icon"><i class="far fa-clock"></i></div>
               <div>
                 <span class="lbl">Thời gian</span
-                ><span class="txt">maybe =]] 09:00 - 11/01/2025</span>
+                ><span class="txt">16h - 21h ngày 11/01/2025</span>
               </div>
             </div>
             <div class="row">
@@ -866,24 +1014,68 @@
           <div class="timeline-box">
             <div class="tl-title">NỘI DUNG SỰ KIỆN</div>
             <div class="tl-item">
-              <div class="tl-time">09:00</div>
+              <div class="tl-time">16h00 - 17h00</div>
               <div class="tl-content">
                 <div class="tl-h">ĐÓN KHÁCH</div>
                 <div class="tl-d">Check-in</div>
               </div>
             </div>
             <div class="tl-item">
-              <div class="tl-time">09:30</div>
+              <div class="tl-time">17h00 - 17h15</div>
               <div class="tl-content">
                 <div class="tl-h">KHAI MẠC</div>
-                <div class="tl-d">1 chút văn nghệ</div>
+                <div class="tl-d">Văn nghệ chào mừng</div>
               </div>
             </div>
             <div class="tl-item">
-              <div class="tl-time">11:30</div>
+              <div class="tl-time">17h15 - 17h45</div>
               <div class="tl-content">
-                <div class="tl-h">TIỆC TRƯA</div>
-                <div class="tl-d">ăn hoi</div>
+                <div class="tl-h">Giới thiệu Tâm Đức và Đội ngũ</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">17h45 - 18h</div>
+              <div class="tl-content">
+                <div class="tl-h">Tổ chức sinh nhật</div>
+                <div class="tl-d">
+                  Chúc mừng sinh nhật các thành viên Tháng 1, Tháng 2
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">18h00 - 18h15</div>
+              <div class="tl-content">
+                <div class="tl-h">Khai tiệc</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">18h15 - 19h30</div>
+              <div class="tl-content">
+                <div class="tl-h">Văn nghệ tất niên</div>
+                <div class="tl-d">Các tiết mục Văn Nghệ của Tâm Đức</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">19h30 - 20h</div>
+              <div class="tl-content">
+                <div class="tl-h">Bốc thăm trúng thưởng</div>
+                <div class="tl-d">Chương trình Lô Tô trúng thưởng</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">20h00 - 20h45</div>
+              <div class="tl-content">
+                <div class="tl-h">Văn nghệ tự do</div>
+                <div class="tl-d">
+                  Mọi người thử sức với các tiết mục văn nghệ tự do
+                </div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-time">20h45 - 21h00</div>
+              <div class="tl-content">
+                <div class="tl-h">Kết thúc</div>
+                <div class="tl-d">Chụp ảnh lưu niệm tập thể</div>
               </div>
             </div>
           </div>
@@ -1042,6 +1234,10 @@
           ctx.rotate(this.angle);
           ctx.fillStyle = this.color;
           ctx.beginPath();
+          const colors = ["#c5a028", "#ff6a88", "rgba(255,255,255,0.8)"];
+          // Chọn màu dựa trên vị trí để tạo ngẫu nhiên nhưng ổn định
+          const colorIndex = Math.floor(this.x % colors.length);
+          ctx.fillStyle = colors[colorIndex];
           for (let i = 0; i < 5; i++) {
             ctx.lineTo(
               Math.cos(((18 + i * 72) * Math.PI) / 180) * this.size,
@@ -1052,6 +1248,8 @@
               Math.sin(((54 + i * 72) * Math.PI) / 180) * (this.size / 2)
             );
           }
+          ctx.shadowBlur = 15;
+          ctx.shadowColor = colors[colorIndex];
           ctx.closePath();
           ctx.fill();
           ctx.restore();
