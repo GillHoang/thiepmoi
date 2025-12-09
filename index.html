@@ -11,6 +11,10 @@
       rel="stylesheet"
     />
     <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
@@ -286,30 +290,45 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -30%);
-        width: 70px;
-        height: 70px;
-        background: radial-gradient(
-          circle at 30% 30%,
-          #fff0b4,
-          #e6c986,
-          #9c7c28
-        );
+
+        /* Tăng kích thước lên một chút để logo rõ hơn */
+        width: 90px;
+        height: 90px;
+
+        /* Tạo nền trắng và viền tròn */
+        background: #fff;
         border-radius: 50%;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.8);
+
+        /* Viền vàng kim hoặc hồng tùy bạn chọn (đang để vàng cho nổi) */
+        border: 3px solid #e6c986;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Bóng đổ tạo độ nổi 3D */
+
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 6;
         cursor: pointer;
-        border: 2px solid #fff5d1;
-        transition: opacity 0.5s ease;
+        transition: all 0.5s ease;
+        overflow: hidden; /* Cắt bỏ phần thừa để đảm bảo hình tròn */
       }
 
+      /* Định dạng cho ảnh logo bên trong */
+      .wax-seal img {
+        width: 210%; /* Thu nhỏ logo một chút để không chạm sát viền */
+        height: auto;
+        object-fit: contain; /* Giữ nguyên tỉ lệ logo, không bị méo */
+      }
+
+      /* Hiệu ứng khi di chuột vào con dấu */
+      .wax-seal:hover {
+        transform: translate(-50%, -30%) scale(1.1) rotate(10deg); /* Phóng to và xoay nhẹ */
+        box-shadow: 0 0 20px rgba(230, 201, 134, 0.6); /* Phát sáng viền */
+        border-color: #ff6a88; /* Đổi màu viền sang hồng khi hover */
+      }
+
+      /* Xóa bỏ code cũ của thẻ i (icon máy bay) nếu còn sót */
       .wax-seal i {
-        font-size: 32px;
-        color: #4a3b05;
-        transform: rotate(-90deg);
-        filter: drop-shadow(1px 1px 0 rgba(255, 255, 255, 0.4));
+        display: none;
       }
 
       .envelope-msg {
@@ -532,7 +551,11 @@
       }
 
       .brand {
-        font-family: var(--font-script);
+        font-family: "Libre Baskerville", "Baskerville", "Baskerville Old Face",
+          serif;
+
+        /* Khuyên dùng thêm dòng này để Baskerville nhìn nghệ thuật hơn */
+        font-style: italic;
         font-size: 45px;
         font-weight: 700;
         letter-spacing: 0;
@@ -918,7 +941,9 @@
         <div class="pocket-left"></div>
         <div class="pocket-right"></div>
         <div class="pocket-bottom"></div>
-        <div class="wax-seal"><i class="fas fa-plane"></i></div>
+        <div class="wax-seal">
+          <img src="logo.jpg" alt="Logo Tâm Đức" />
+        </div>
         <div class="envelope-msg">Kính gửi Quý Đối Tác</div>
       </div>
     </div>
@@ -1080,7 +1105,9 @@
             </div>
           </div>
 
-          <div class="sig">Trân trọng, Tâm Đức Team</div>
+          <div class="sig">
+            Cảm ơn quý đối tác đã dành thời gian để tham gia buổi lễ
+          </div>
         </div>
       </div>
     </div>
