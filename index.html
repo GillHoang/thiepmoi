@@ -53,9 +53,8 @@
         margin: 0;
         padding: 0;
       }
-      /* Sửa thanh cuộn cho đẹp */
       .card::-webkit-scrollbar {
-        width: 6px; /* Mỏng lại */
+        width: 6px;
       }
 
       .card::-webkit-scrollbar-track {
@@ -64,15 +63,12 @@
       }
 
       .card::-webkit-scrollbar-thumb {
-        background: linear-gradient(
-          #ff6a88,
-          #602580
-        ); /* Màu gradient tím hồng */
+        background: linear-gradient(#ff6a88, #602580);
         border-radius: 4px;
       }
 
       .card::-webkit-scrollbar-thumb:hover {
-        background: #602580; /* Đổi màu khi di chuột vào */
+        background: #602580;
       }
 
       body {
@@ -290,43 +286,33 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -30%);
-
-        /* Tăng kích thước lên một chút để logo rõ hơn */
         width: 90px;
         height: 90px;
-
-        /* Tạo nền trắng và viền tròn */
         background: #fff;
         border-radius: 50%;
-
-        /* Viền vàng kim hoặc hồng tùy bạn chọn (đang để vàng cho nổi) */
         border: 3px solid #e6c986;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Bóng đổ tạo độ nổi 3D */
-
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 6;
         cursor: pointer;
         transition: all 0.5s ease;
-        overflow: hidden; /* Cắt bỏ phần thừa để đảm bảo hình tròn */
+        overflow: hidden;
       }
 
-      /* Định dạng cho ảnh logo bên trong */
       .wax-seal img {
-        width: 210%; /* Thu nhỏ logo một chút để không chạm sát viền */
+        width: 210%;
         height: auto;
-        object-fit: contain; /* Giữ nguyên tỉ lệ logo, không bị méo */
+        object-fit: contain;
       }
 
-      /* Hiệu ứng khi di chuột vào con dấu */
       .wax-seal:hover {
-        transform: translate(-50%, -30%) scale(1.1) rotate(10deg); /* Phóng to và xoay nhẹ */
-        box-shadow: 0 0 20px rgba(230, 201, 134, 0.6); /* Phát sáng viền */
-        border-color: #ff6a88; /* Đổi màu viền sang hồng khi hover */
+        transform: translate(-50%, -30%) scale(1.1) rotate(10deg);
+        box-shadow: 0 0 20px rgba(230, 201, 134, 0.6);
+        border-color: #ff6a88;
       }
 
-      /* Xóa bỏ code cũ của thẻ i (icon máy bay) nếu còn sót */
       .wax-seal i {
         display: none;
       }
@@ -422,7 +408,7 @@
       }
       .wrap.show-card .map-btn-wrap {
         animation-delay: 0.3s;
-      } /* Hiện ngay sau khi confirm */
+      }
       .wrap.show-card .timeline-box {
         animation-delay: 0.5s;
       }
@@ -434,27 +420,21 @@
         }
       }
 
-      /* Sửa class .card */
       .card {
         background: var(--white);
         border-radius: 8px;
-        /* Tăng độ bóng đổ để nổi hơn trên nền tối */
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8),
           0 0 15px rgba(255, 106, 136, 0.4);
         overflow: hidden;
         text-align: center;
-        /* Giảm padding để lộ viền gradient */
         padding: 4px;
         overflow-y: auto;
         max-height: 90vh;
-
-        /* Gradient màu chạy theo logo: Hồng -> Tím -> Vàng -> Hồng */
         background: linear-gradient(60deg, #ff6a88, #602580, #c5a028, #ff6a88);
-        background-size: 300% 300%; /* Phóng to background để nó chạy mượt */
-        animation: borderAnim 4s ease infinite; /* Chạy animation */
+        background-size: 300% 300%;
+        animation: borderAnim 4s ease infinite;
       }
 
-      /* Thêm đoạn keyframes này ngay dưới .card nếu chưa có */
       @keyframes borderAnim {
         0% {
           background-position: 0% 50%;
@@ -467,10 +447,9 @@
         }
       }
 
-      /* Sửa class .border-inner */
       .border-inner {
-        background: #fff; /* Nền trắng đè lên để tạo hiệu ứng viền */
-        border: 1px solid #e6c986; /* Viền vàng mảnh bên trong */
+        background: #fff;
+        border: 1px solid #e6c986;
         padding: 20px 10px;
         border-radius: 4px;
         min-height: 100%;
@@ -478,9 +457,9 @@
         flex-direction: column;
         justify-content: center;
         position: relative;
+        box-shadow: inset 0 0 20px rgba(230, 201, 134, 0.1);
       }
 
-      /* Tạo 2 góc trên trái & dưới phải */
       .border-inner::before {
         content: "";
         position: absolute;
@@ -490,10 +469,9 @@
         height: 40px;
         border-top: 2px solid #c5a028;
         border-left: 2px solid #c5a028;
-        pointer-events: none; /* Để không bị che nút bấm */
+        pointer-events: none;
       }
 
-      /* Tạo 2 góc trên phải & dưới trái */
       .border-inner::after {
         content: "";
         position: absolute;
@@ -506,34 +484,13 @@
         pointer-events: none;
       }
 
-      /* Thủ thuật tạo 4 góc bằng box-shadow để đỡ viết nhiều code HTML */
-      .border-inner {
-        /* Giữ code cũ */
-        position: relative; /* Bắt buộc để căn chỉnh góc */
-        box-shadow: inset 0 0 20px rgba(230, 201, 134, 0.1); /* Thêm ánh vàng mờ bên trong */
-      }
-
       .card::-webkit-scrollbar {
         width: 0;
       }
 
-      .border-inner {
-        border: 1px solid #c5a028;
-        padding: 20px 10px;
-        border-radius: 4px;
-        min-height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-
       .logo {
-        width: 100px; /* Code cũ */
-        margin: 0 auto 10px auto; /* Code cũ */
-
-        /* Code mới: Tạo bóng màu tím */
-        /*filter: drop-shadow(0 10px 15px rgba(96, 37, 128, 0.4));
-        /* Animation nhấp nhô */
+        width: 100px;
+        margin: 0 auto 10px auto;
         animation: floatLogo 3s ease-in-out infinite;
       }
 
@@ -543,7 +500,7 @@
         }
         50% {
           transform: translateY(-8px);
-        } /* Bay lên nhẹ */
+        }
         100% {
           transform: translateY(0px);
         }
@@ -552,15 +509,11 @@
       .brand {
         font-family: "Libre Baskerville", "Baskerville", "Baskerville Old Face",
           serif;
-
-        /* Khuyên dùng thêm dòng này để Baskerville nhìn nghệ thuật hơn */
         font-style: italic;
         font-size: 45px;
         font-weight: 700;
         letter-spacing: 0;
         line-height: 1.1;
-
-        /* Tạo gradient ánh kim */
         background: linear-gradient(
           to right,
           #602580 0%,
@@ -572,8 +525,6 @@
         background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-
-        /* Animation chữ lấp lánh */
         animation: shineText 5s linear infinite;
       }
 
@@ -688,9 +639,7 @@
         font-family: var(--font-main);
       }
 
-      /* --- TÌM VÀ SỬA LẠI ĐOẠN NÀY --- */
       .btn {
-        /* Các thuộc tính cũ giữ nguyên */
         padding: 12px 0;
         width: 100%;
         background: var(--grad);
@@ -706,14 +655,13 @@
         letter-spacing: 1px;
         transition: 0.3s;
         animation: pulseBtn 2s infinite;
-
-        /* --- QUAN TRỌNG: THÊM 3 DÒNG NÀY ĐỂ HIỆU ỨNG CHẠY ĐÚNG --- */
-        position: relative; /* Để giữ hiệu ứng nằm trong nút */
-        overflow: hidden; /* Để cắt bỏ phần sáng chạy ra ngoài nút */
+        position: relative;
+        overflow: hidden;
         z-index: 1;
+        text-decoration: none;
+        display: inline-block;
       }
 
-      /* --- THÊM MỚI ĐOẠN NÀY NGAY BÊN DƯỚI .btn --- */
       .btn::after {
         content: "";
         position: absolute;
@@ -721,15 +669,14 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        /* Màu trắng mờ quét qua */
         background: linear-gradient(
           90deg,
           transparent,
           rgba(255, 255, 255, 0.5),
           transparent
         );
-        animation: shineBtn 3s infinite; /* Chạy lặp lại mỗi 3 giây */
-        pointer-events: none; /* Đảm bảo vẫn click được vào nút */
+        animation: shineBtn 3s infinite;
+        pointer-events: none;
       }
 
       @keyframes shineBtn {
@@ -737,14 +684,13 @@
           left: -100%;
         }
         20% {
-          left: 100%; /* Chạy nhanh qua trong 20% thời gian đầu */
+          left: 100%;
         }
         100% {
-          left: 100%; /* Thời gian còn lại nghỉ */
+          left: 100%;
         }
       }
 
-      /* --- NÚT GOOGLE MAPS (MỚI) --- */
       .map-btn-wrap {
         margin: 10px 0 20px 0;
       }
@@ -774,7 +720,6 @@
         box-shadow: 0 6px 15px rgba(96, 37, 128, 0.25);
       }
 
-      /* --- TIMELINE --- */
       .timeline-box {
         margin-top: 10px;
         text-align: left;
@@ -943,11 +888,10 @@
         <div class="wax-seal">
           <img src="logo.jpg" alt="Logo Tâm Đức" />
         </div>
-        <div class="envelope-msg", style="font-size: 15px">(Nhấn vào để mở thiệp) <br /><div class="envelope-msg" >
-        Kính gửi Quý Đối Tác
-      </div></div>
-      </div>
-      
+        <div class="envelope-msg" style="font-size: 15px">
+          (Nhấn vào để mở thiệp) <br />
+          <div class="envelope-msg">Kính gửi Quý Đối Tác</div>
+        </div>
       </div>
     </div>
 
@@ -955,84 +899,18 @@
       <div class="card">
         <div class="border-inner">
           <img
-            style="width: 185px; margin: 0 auto 10px auto; display: block"
+            style="width: 150px; margin: 0 auto 10px auto"
             src="logo(1)(1).jpg"
             class="logo"
           />
-          <div class="sub", style="font-size: 23px;">HỆ THỐNG GIÁO DỤC TÂM ĐỨC</div>
+          <div class="sub" style="font-size: 23px">
+            HỆ THỐNG GIÁO DỤC TÂM ĐỨC
+          </div>
           <div class="divi">♦ ❖ ♦</div>
           <p class="lead">THƯ MỜI THAM DỰ.</p>
-          <h6 class="brand" , style="font-size: 30px">Tiệc Tất Niên</h6>
-          <p class="lead" , style="font-size: 12px">
-            TRÂN TRỌNG KÍNH MỜI QUÝ ĐỐI TÁC THAM DỰ BUỔI TIỆC.
-          </p>
-          <div class="box">
-            <div class="row">
-              <div class="icon"><i class="far fa-clock"></i></div>
-              <div>
-                <span class="lbl">Thời gian</span
-                ><span class="txt">Ngày: 11/01/2025 <br />Giờ: 16h - 21h</span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div>
-                <span class="lbl">Địa điểm</span
-                ><span class="txt">Nhà Hàng Thanh Tùng</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="guest-box">
-            <span class="guest-label">Kính mời:</span>
-            <div class="guest-name-display" id="guest-display">Quý Khách</div>
-          </div>
-          <button class="btn" id="b">Xác Nhận Tham Gia</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="wrap hid" id="c2">
-      <div class="card">
-        <div
-          class="border-inner"
-          style="
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 400px;
-          "
-        >
-          <img
-            style="width: 185px; margin: 0 auto 10px auto"
-            src="logo(1)(1).jpg"
-            class="logo"
-          />
-          <div>
-          <h2 style="color: #602580; font-size: 20px">
-            Xác Nhận<br />Thành Công
-          </h2>
-          </div>
-          <div class="timeline-box">
-            
-            <div class="tl-title">
-              
-              <p class="lead"style="margin-bottom: 0">Hân hạnh được đón tiếp<br /><span
-              id="show-name"
-              style="font-weight: 700; color: #c5a028"
-            ></span
-            >.
-          </p>
-              <div class="map-btn-wrap">
-            <a
-              href="https://maps.app.goo.gl/YmazrQ286mGDeusx9"
-              target="_blank"
-              class="map-btn"
-            >
-              <i class="fas fa-map-marked-alt"></i> Xem Bản Đồ
-            </a>
-          </div>
-              NỘI DUNG SỰ KIỆN</div>
+          <h6 class="brand" style="font-size: 30px">Tiệc Tất Niên</h6>
+          <div class="timeline-box" style="opacity: 1">
+            <div class="tl-title">NỘI DUNG SỰ KIỆN</div>
             <div class="tl-item">
               <div class="tl-time">16h00 - 17h00</div>
               <div class="tl-content">
@@ -1099,7 +977,95 @@
               </div>
             </div>
           </div>
+          <button class="btn" id="btn-to-details" style="margin-top: 15px">
+            Xem địa điểm tổ chức
+          </button>
+        </div>
+      </div>
+    </div>
 
+    <div class="wrap hid" id="c2">
+      <div class="card">
+        <div class="border-inner">
+          <img
+            style="width: 185px; margin: 0 auto 10px auto; display: block"
+            src="logo(1)(1).jpg"
+            class="logo"
+          />
+          <div class="sub" style="font-size: 23px">
+            HỆ THỐNG GIÁO DỤC TÂM ĐỨC
+          </div>
+          <div class="divi">♦ ❖ ♦</div>
+          <p class="lead">THƯ MỜI THAM DỰ.</p>
+          <h6 class="brand" style="font-size: 30px">Tiệc Tất Niên</h6>
+          <p class="lead" style="font-size: 12px">
+            TRÂN TRỌNG KÍNH MỜI QUÝ ĐỐI TÁC THAM DỰ BUỔI TIỆC.
+          </p>
+          <div class="box">
+            <div class="row">
+              <div class="icon"><i class="far fa-clock"></i></div>
+              <div>
+                <span class="lbl">Thời gian</span>
+                <span class="txt">Ngày: 11/01/2025 <br />Giờ: 16h - 21h</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <span class="lbl">Địa điểm</span>
+                <span class="txt">Nhà Hàng Thanh Tùng</span>
+                <div class="map-btn-wrap">
+                  <a
+                    href="https://maps.app.goo.gl/YmazrQ286mGDeusx9"
+                    target="_blank"
+                    class="map-btn"
+                  >
+                    <i class="fas fa-map-marked-alt"></i> Xem Bản Đồ
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="guest-box">
+            <span class="guest-label">Kính mời:</span>
+            <div class="guest-name-display" id="guest-display">Quý Khách</div>
+          </div>
+          <button class="btn" id="b">Xác Nhận Tham Gia</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap hid" id="c3">
+      <div class="card">
+        <div
+          class="border-inner"
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 400px;
+          "
+        >
+          <img
+            style="width: 185px; margin: 0 auto 10px auto"
+            src="logo(1)(1).jpg"
+            class="logo"
+          />
+          <div>
+            <h2 style="color: #602580; font-size: 20px">
+              Xác Nhận<br />Thành Công
+            </h2>
+          </div>
+          <div style="margin: 20px 0">
+            <p class="lead" style="margin-bottom: 10px">
+              Hân hạnh được đón tiếp<br />
+              <span
+                id="show-name"
+                style="font-weight: 700; color: #c5a028; font-size: 22px"
+              ></span>
+            </p>
+          </div>
           <div class="sig">Hẹn gặp quý đối tác tại buổi lễ</div>
         </div>
       </div>
@@ -1111,8 +1077,9 @@
       const ENTRY_ID = "entry.42927811";
 
       const envelopeWrap = document.getElementById("envelope-wrap");
-      const c1 = document.getElementById("c1"),
-        c2 = document.getElementById("c2");
+      const c1 = document.getElementById("c1"), // Timeline
+        c2 = document.getElementById("c2"), // Info
+        c3 = document.getElementById("c3"); // Thank you
       const audio = document.getElementById("bg-music"),
         musicBtn = document.getElementById("music-btn");
       let isMusicPlaying = false;
@@ -1151,11 +1118,13 @@
       document.body.addEventListener("click", tryPlayMusic);
       document.body.addEventListener("touchstart", tryPlayMusic);
 
+      // Mở phong bì -> Hiện C1 (Timeline)
       envelopeWrap.addEventListener("click", () => {
         envelopeWrap.classList.add("envelope-open");
         c1.classList.add("show-card");
         tryPlayMusic();
       });
+
       musicBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         if (isMusicPlaying) {
@@ -1169,16 +1138,30 @@
         }
       });
 
-      const b = document.getElementById("b"),
-        s = document.getElementById("swarm"),
+      const btnToDetails = document.getElementById("btn-to-details");
+      const b = document.getElementById("b"); // Nút Xác Nhận ở C2
+      const s = document.getElementById("swarm"),
         bg = document.getElementById("back");
 
       function r(m, x) {
         return Math.random() * (x - m) + m;
       }
 
+      // Chuyển từ C1 (Timeline) -> C2 (Details)
+      btnToDetails.onclick = () => {
+        c1.classList.remove("show-card");
+        c1.classList.add("hid");
+        c2.classList.remove("hid");
+        setTimeout(() => {
+          c2.classList.add("show-card");
+        }, 50); // Delay nhỏ để animation chạy
+        // Cuộn lên đầu trang nếu cần thiết
+        window.scrollTo(0, 0);
+      };
+
+      // Chuyển từ C2 (Details) -> C3 (Thank you)
       b.onclick = () => {
-        // Hiện tên ở card 2
+        // Hiện tên ở card 3
         showName.innerText = finalName;
 
         // GỬI TÊN VỀ GOOGLE FORM
@@ -1206,10 +1189,10 @@
           s.appendChild(p);
         }
         setTimeout(() => {
-          c1.classList.remove("show-card");
-          c1.classList.add("hid");
-          c2.classList.remove("hid");
-          c2.classList.add("show-card");
+          c2.classList.remove("show-card");
+          c2.classList.add("hid");
+          c3.classList.remove("hid");
+          c3.classList.add("show-card");
         }, 1200);
         setTimeout(() => {
           bg.style.opacity = "0";
@@ -1255,7 +1238,6 @@
           ctx.fillStyle = this.color;
           ctx.beginPath();
           const colors = ["#c5a028", "#ff6a88", "rgba(255,255,255,0.8)"];
-          // Chọn màu dựa trên vị trí để tạo ngẫu nhiên nhưng ổn định
           const colorIndex = Math.floor(this.x % colors.length);
           ctx.fillStyle = colors[colorIndex];
           for (let i = 0; i < 5; i++) {
