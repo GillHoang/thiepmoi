@@ -929,7 +929,9 @@
             src="logo(1)(1).jpg"
             class="logo"
           />
-          <h6 class="brand" style="font-size: 28px">Chương Trình</h6>
+          <div class="divi">♦ ❖ ♦</div>
+          <p class="lead">THƯ MỜI THAM DỰ.</p>
+          <h6 class="brand" style="font-size: 30px">Tiệc Tất Niên</h6>
           <div class="timeline-box" style="opacity: 1">
             <div class="tl-title">NỘI DUNG SỰ KIỆN</div>
             <div class="tl-item">
@@ -1053,7 +1055,7 @@
             <div class="guest-name-display" id="guest-display">Quý Khách</div>
           </div>
           <button class="btn" id="b">Xác Nhận Tham Gia</button>
-          
+
           <button class="btn-back" id="btn-back-to-timeline">
             ← Quay Lại Lịch Trình
           </button>
@@ -1092,11 +1094,10 @@
             </p>
           </div>
           <div class="sig">Hẹn gặp quý đối tác tại buổi lễ</div>
-          
-          <button class="btn-back" id="btn-back-from-success">
-             ← Quay Lại Lịch Trình
-          </button>
 
+          <button class="btn-back" id="btn-back-from-success">
+            ← Quay Lại Lịch Trình
+          </button>
         </div>
       </div>
     </div>
@@ -1170,10 +1171,12 @@
 
       const btnToDetails = document.getElementById("btn-to-details");
       const btnBackToTimeline = document.getElementById("btn-back-to-timeline");
-      
+
       // Khai báo nút mới
-      const btnBackFromSuccess = document.getElementById("btn-back-from-success");
-      
+      const btnBackFromSuccess = document.getElementById(
+        "btn-back-from-success"
+      );
+
       const b = document.getElementById("b"); // Nút Xác Nhận ở C2
       const s = document.getElementById("swarm"),
         bg = document.getElementById("back");
@@ -1188,7 +1191,7 @@
         c1.classList.add("hid");
         c2.classList.remove("hid");
         setTimeout(() => {
-            c2.classList.add("show-card");
+          c2.classList.add("show-card");
         }, 50); // Delay nhỏ để animation chạy
         // Cuộn lên đầu trang nếu cần thiết
         window.scrollTo(0, 0);
@@ -1198,10 +1201,10 @@
       btnBackToTimeline.onclick = () => {
         c2.classList.remove("show-card");
         c2.classList.add("hid");
-        
+
         c1.classList.remove("hid");
         setTimeout(() => {
-            c1.classList.add("show-card");
+          c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
@@ -1210,10 +1213,10 @@
       btnBackFromSuccess.onclick = () => {
         c3.classList.remove("show-card");
         c3.classList.add("hid");
-        
+
         c1.classList.remove("hid");
         setTimeout(() => {
-            c1.classList.add("show-card");
+          c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
