@@ -1051,7 +1051,7 @@
           </div>
 
           <div class="guest-box">
-            <span class="guest-label">Kính mời:</span>
+            <span class="guest-label">Trân trọng kính mời:</span>
             <div class="guest-name-display" id="guest-display">Quý Khách</div>
           </div>
           <button class="btn" id="b">Xác Nhận Tham Gia</button>
@@ -1115,7 +1115,7 @@
         musicBtn = document.getElementById("music-btn");
       let isMusicPlaying = false;
 
-      // 1. LẤY TÊN KHÁCH TỪ LINK
+      // 1. LẤY TÊN KHÁCH TỪ LINK VÀ BỎ GẠCH CHÂN
       const urlParams = new URLSearchParams(window.location.search);
       const guestNameParam = urlParams.get("n");
       const guestDisplay = document.getElementById("guest-display");
@@ -1123,7 +1123,8 @@
 
       let finalName = "Quý Khách";
       if (guestNameParam) {
-        finalName = guestNameParam;
+        // Dòng này sẽ thay thế tất cả dấu "_" thành khoảng trắng " "
+        finalName = guestNameParam.replace(/_/g, " ");
         guestDisplay.innerText = finalName;
       }
 
@@ -1171,12 +1172,10 @@
 
       const btnToDetails = document.getElementById("btn-to-details");
       const btnBackToTimeline = document.getElementById("btn-back-to-timeline");
-
+      
       // Khai báo nút mới
-      const btnBackFromSuccess = document.getElementById(
-        "btn-back-from-success"
-      );
-
+      const btnBackFromSuccess = document.getElementById("btn-back-from-success");
+      
       const b = document.getElementById("b"); // Nút Xác Nhận ở C2
       const s = document.getElementById("swarm"),
         bg = document.getElementById("back");
@@ -1191,7 +1190,7 @@
         c1.classList.add("hid");
         c2.classList.remove("hid");
         setTimeout(() => {
-          c2.classList.add("show-card");
+            c2.classList.add("show-card");
         }, 50); // Delay nhỏ để animation chạy
         // Cuộn lên đầu trang nếu cần thiết
         window.scrollTo(0, 0);
@@ -1201,22 +1200,22 @@
       btnBackToTimeline.onclick = () => {
         c2.classList.remove("show-card");
         c2.classList.add("hid");
-
+        
         c1.classList.remove("hid");
         setTimeout(() => {
-          c1.classList.add("show-card");
+            c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
 
-      // --- SỰ KIỆN NÚT BACK (C3 -> C1) (Đã thêm) ---
+      // --- SỰ KIỆN NÚT BACK (C3 -> C1) ---
       btnBackFromSuccess.onclick = () => {
         c3.classList.remove("show-card");
         c3.classList.add("hid");
-
+        
         c1.classList.remove("hid");
         setTimeout(() => {
-          c1.classList.add("show-card");
+            c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
