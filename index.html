@@ -1013,7 +1013,9 @@
             src="logo(1)(1).jpg"
             class="logo"
           />
-          <div class="sub" style="font-size: 23px">HỆ THỐNG GIÁO DỤC TÂM ĐỨC</div>
+          <div class="sub" style="font-size: 23px">
+            HỆ THỐNG GIÁO DỤC TÂM ĐỨC
+          </div>
           <div class="divi">♦ ❖ ♦</div>
           <p class="lead">THƯ MỜI THAM DỰ.</p>
           <h6 class="brand" style="font-size: 30px">Tiệc Tất Niên</h6>
@@ -1033,6 +1035,15 @@
               <div>
                 <span class="lbl">Địa điểm</span>
                 <span class="txt">Nhà Hàng Thanh Tùng</span>
+                <div class="map-btn-wrap">
+                  <a
+                    href="https://maps.app.goo.gl/YmazrQ286mGDeusx9"
+                    target="_blank"
+                    class="map-btn"
+                  >
+                    <i class="fas fa-map-marked-alt"></i> Xem Bản Đồ
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -1079,15 +1090,6 @@
                 style="font-weight: 700; color: #c5a028; font-size: 22px"
               ></span>
             </p>
-            <div class="map-btn-wrap">
-              <a
-                href="https://maps.app.goo.gl/YmazrQ286mGDeusx9"
-                target="_blank"
-                class="map-btn"
-              >
-                <i class="fas fa-map-marked-alt"></i> Xem Bản Đồ
-              </a>
-            </div>
           </div>
           <div class="sig">Hẹn gặp quý đối tác tại buổi lễ</div>
           
@@ -1168,6 +1170,10 @@
 
       const btnToDetails = document.getElementById("btn-to-details");
       const btnBackToTimeline = document.getElementById("btn-back-to-timeline");
+      
+      // Khai báo nút mới
+      const btnBackFromSuccess = document.getElementById("btn-back-from-success");
+      
       const b = document.getElementById("b"); // Nút Xác Nhận ở C2
       const s = document.getElementById("swarm"),
         bg = document.getElementById("back");
@@ -1183,7 +1189,8 @@
         c2.classList.remove("hid");
         setTimeout(() => {
             c2.classList.add("show-card");
-        }, 50); 
+        }, 50); // Delay nhỏ để animation chạy
+        // Cuộn lên đầu trang nếu cần thiết
         window.scrollTo(0, 0);
       };
 
@@ -1199,17 +1206,16 @@
         window.scrollTo(0, 0);
       };
 
-      // --- MỚI: SỰ KIỆN NÚT BACK TỪ SLIDE 3 VỀ SLIDE 1 ---
-      const btnBackFromSuccess = document.getElementById("btn-back-from-success");
+      // --- SỰ KIỆN NÚT BACK (C3 -> C1) (Đã thêm) ---
       btnBackFromSuccess.onclick = () => {
-         c3.classList.remove("show-card");
-         c3.classList.add("hid");
-
-         c1.classList.remove("hid");
-         setTimeout(() => {
-             c1.classList.add("show-card");
-         }, 50);
-         window.scrollTo(0, 0);
+        c3.classList.remove("show-card");
+        c3.classList.add("hid");
+        
+        c1.classList.remove("hid");
+        setTimeout(() => {
+            c1.classList.add("show-card");
+        }, 50);
+        window.scrollTo(0, 0);
       };
 
       // Chuyển từ C2 (Details) -> C3 (Thank you)
