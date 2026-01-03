@@ -85,7 +85,6 @@
         font-weight: 400;
       }
 
-      /* --- CANVAS & MUSIC --- */
       #canvas-petals {
         position: fixed;
         top: 0;
@@ -142,7 +141,6 @@
         }
       }
 
-      /* --- ENVELOPE --- */
       #envelope-wrap {
         position: absolute;
         z-index: 50;
@@ -348,7 +346,6 @@
         pointer-events: none;
       }
 
-      /* --- CARD --- */
       .wrap {
         position: absolute;
         z-index: 10;
@@ -370,7 +367,6 @@
         pointer-events: auto;
       }
 
-      /* Animation */
       .wrap.show-card .logo,
       .wrap.show-card .brand,
       .wrap.show-card h2,
@@ -407,7 +403,6 @@
       .wrap.show-card .btn {
         animation-delay: 1.3s;
       }
-      /* Delay cho nút Back */
       .wrap.show-card .btn-back {
         animation-delay: 1.4s;
       }
@@ -684,7 +679,6 @@
         pointer-events: none;
       }
 
-      /* --- STYLE CHO NÚT QUAY LẠI (BACK) --- */
       .btn-back {
         background: transparent;
         border: 1px solid #602580;
@@ -1108,14 +1102,13 @@
       const ENTRY_ID = "entry.42927811";
 
       const envelopeWrap = document.getElementById("envelope-wrap");
-      const c1 = document.getElementById("c1"), // Timeline
-        c2 = document.getElementById("c2"), // Info
-        c3 = document.getElementById("c3"); // Thank you
+      const c1 = document.getElementById("c1"),
+        c2 = document.getElementById("c2"),
+        c3 = document.getElementById("c3");
       const audio = document.getElementById("bg-music"),
         musicBtn = document.getElementById("music-btn");
       let isMusicPlaying = false;
 
-      // 1. LẤY TÊN KHÁCH TỪ LINK VÀ BỎ GẠCH CHÂN
       const urlParams = new URLSearchParams(window.location.search);
       const guestNameParam = urlParams.get("n");
       const guestDisplay = document.getElementById("guest-display");
@@ -1123,12 +1116,10 @@
 
       let finalName = "Quý Khách";
       if (guestNameParam) {
-        // Dòng này sẽ thay thế tất cả dấu "_" thành khoảng trắng " "
         finalName = guestNameParam.replace(/_/g, " ");
         guestDisplay.innerText = finalName;
       }
 
-      // 2. LOGIC PHÁT NHẠC
       function tryPlayMusic() {
         if (!isMusicPlaying) {
           audio.volume = 0.5;
@@ -1150,7 +1141,6 @@
       document.body.addEventListener("click", tryPlayMusic);
       document.body.addEventListener("touchstart", tryPlayMusic);
 
-      // Mở phong bì -> Hiện C1 (Timeline)
       envelopeWrap.addEventListener("click", () => {
         envelopeWrap.classList.add("envelope-open");
         c1.classList.add("show-card");
@@ -1172,11 +1162,12 @@
 
       const btnToDetails = document.getElementById("btn-to-details");
       const btnBackToTimeline = document.getElementById("btn-back-to-timeline");
-      
-      // Khai báo nút mới
-      const btnBackFromSuccess = document.getElementById("btn-back-from-success");
-      
-      const b = document.getElementById("b"); // Nút Xác Nhận ở C2
+
+      const btnBackFromSuccess = document.getElementById(
+        "btn-back-from-success"
+      );
+
+      const b = document.getElementById("b");
       const s = document.getElementById("swarm"),
         bg = document.getElementById("back");
 
@@ -1184,48 +1175,41 @@
         return Math.random() * (x - m) + m;
       }
 
-      // Chuyển từ C1 (Timeline) -> C2 (Details)
       btnToDetails.onclick = () => {
         c1.classList.remove("show-card");
         c1.classList.add("hid");
         c2.classList.remove("hid");
         setTimeout(() => {
-            c2.classList.add("show-card");
-        }, 50); // Delay nhỏ để animation chạy
-        // Cuộn lên đầu trang nếu cần thiết
+          c2.classList.add("show-card");
+        }, 50);
         window.scrollTo(0, 0);
       };
 
-      // --- SỰ KIỆN NÚT BACK (C2 -> C1) ---
       btnBackToTimeline.onclick = () => {
         c2.classList.remove("show-card");
         c2.classList.add("hid");
-        
+
         c1.classList.remove("hid");
         setTimeout(() => {
-            c1.classList.add("show-card");
+          c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
 
-      // --- SỰ KIỆN NÚT BACK (C3 -> C1) ---
       btnBackFromSuccess.onclick = () => {
         c3.classList.remove("show-card");
         c3.classList.add("hid");
-        
+
         c1.classList.remove("hid");
         setTimeout(() => {
-            c1.classList.add("show-card");
+          c1.classList.add("show-card");
         }, 50);
         window.scrollTo(0, 0);
       };
 
-      // Chuyển từ C2 (Details) -> C3 (Thank you)
       b.onclick = () => {
-        // Hiện tên ở card 3
         showName.innerText = finalName;
 
-        // GỬI TÊN VỀ GOOGLE FORM
         if (FORM_ACTION_URL.includes("docs.google.com")) {
           const formData = new FormData();
           formData.append(ENTRY_ID, finalName);
@@ -1264,7 +1248,6 @@
         }, 3500);
       };
 
-      // --- NGÔI SAO ---
       const canvas = document.getElementById("canvas-petals"),
         ctx = canvas.getContext("2d");
       canvas.width = window.innerWidth;
